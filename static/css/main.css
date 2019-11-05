@@ -16,3 +16,18 @@ body{
 .nav-item{
     color: #2EEE58!important;
 }
+.nav-item:hover {
+    color: #EE9E2E!important;
+}
+.navbar-brand:hover{
+    color: #EE9E2E!important;
+}
+/* footer */
+.footer{
+    line-height: 1rem;
+    font-size: 1rem;
+    text-align: center;
+    background-color: #774836;
+    padding: 1rem;
+    color: #2EEE58;
+}
