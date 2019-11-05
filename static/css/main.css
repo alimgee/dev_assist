@@ -1,20 +1,20 @@
 body{
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'Ubuntu', sans-serif; 
 }
 
 /*  nav */
 /* change the nav background color */
 .bg-light {
-    background-color: #774836!important;
+    background-color: #537479!important;
    
 }
 /* change text color */
 .navbar-light .navbar-brand  {
-    color: #2EEE58;
+    color: #fafafa;
 }
 
 .nav-item{
-    color: #2EEE58!important;
+    color: #fafafa!important;
 }
 .nav-item:hover {
     color: #EE9E2E!important;
@@ -22,12 +22,20 @@ body{
 .navbar-brand:hover{
     color: #EE9E2E!important;
 }
+
+/* jumbotron */
+.jumbotron{
+    background-color: #F3CDA9;
+    color: #537479;
+    font-weight: bold; 
+}
 /* footer */
 .footer{
     line-height: 1rem;
     font-size: 1rem;
     text-align: center;
-    background-color: #774836;
+    background-color: #537479;
     padding: 1rem;
-    color: #2EEE58;
+    color: #fafafa;
+    margin-top: -.5rem;
 }
