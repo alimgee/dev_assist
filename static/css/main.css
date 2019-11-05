@@ -1,6 +1,18 @@
 body{
-    background-color: brown;
+    font-family: 'Ubuntu', sans-serif;
 }
-.red{
-    color: red;
+
+/*  nav */
+/* change the nav background color */
+.bg-light {
+    background-color: #774836!important;
+   
+}
+/* change text color */
+.navbar-light .navbar-brand  {
+    color: #2EEE58;
+}
+
+.nav-item{
+    color: #2EEE58!important;
 }
