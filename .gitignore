@@ -3,3 +3,4 @@ venv/
 dev_assist/__pycache__/
 db.sqlite3
 main/migrations/
+main/__pycache__/
