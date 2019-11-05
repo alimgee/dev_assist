@@ -119,5 +119,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static")
+    os.path.join(BASE_DIR, "static") # setting default directories for static files
 ]
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # setting default location of /media folder
+MEDIA_URL = '/media/'
+
