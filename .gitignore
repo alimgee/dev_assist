@@ -4,3 +4,5 @@ dev_assist/__pycache__/
 db.sqlite3
 main/migrations/
 main/__pycache__/
+users/migrations/
+users/__pycache__/
