@@ -29,6 +29,8 @@ body{
     color: #537479;
     font-weight: bold; 
 }
+/* index page card */
+
 /* footer */
 .footer{
     line-height: 1rem;
@@ -37,5 +39,5 @@ body{
     background-color: #537479;
     padding: 1rem;
     color: #fafafa;
-    margin-top: -.5rem;
+
 }
