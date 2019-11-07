@@ -23,7 +23,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls')),
     path('register/', user_views.register, name='register'),
-    #using the built in log in view to allow log user in 
+    # using the built in log in view to allow log user in 
     path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
+    # using the built in log out functionality
+    path('logout/', auth_views.LogoutView.as_view(template_name='logout.html'), name='logout'),
 
 ]
