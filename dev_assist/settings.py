@@ -130,4 +130,4 @@ MEDIA_URL = '/media/'
 CRISPY_TEMPLATE_PACK = 'bootstrap4' # telling django-crispy-forms to use bootstrap 4
 
 LOGIN_REDIRECT_URL = 'home' # view to go to after logging in
-LOGIN_URL = 'login' # to redirect after registering to login - modified in register view
+LOGIN_URL = 'login' # to redirect after registering to built in login view
