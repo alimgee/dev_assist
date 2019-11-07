@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main.apps.MainConfig',
     'users.apps.UsersConfig',
+    'crispy_forms' # for styling register and log in forms
 ]
 
 MIDDLEWARE = [
@@ -125,4 +126,6 @@ STATICFILES_DIRS = [
 ]
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # setting default location of /media folder
 MEDIA_URL = '/media/'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4' # telling django-crispy-forms to use bootstrap 4
 

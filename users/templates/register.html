@@ -1,15 +1,24 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
+<!--loading in django crispy forms tags-->
 {% block content %}
-
-<h1>Register page</h1>
-<form method="POST">
-    {% csrf_token %}
-    <fieldset class="form-group">
-        <legend class="border-bottom mb-4">Register</legend>
-        {{ form }}
-    </fieldset>
-    <div class="form-group">
-        <button class="btn btn-outline-info" type="submit">Sign Up</button>
+<!-- Registration form Content-->
+<div class="container">
+    <div class="row mb-4">
+        <div class="col">
+            <h1>Register Now</h1>
+            <form method="POST">
+                {% csrf_token %}<!--csrf token needed for all django forms for security-->
+                <fieldset class="form-group">
+                    <legend class="border-bottom mb-4">Register</legend>
+                    {{ form |crispy }}<!-- styling form with django crispy forms-->
+                </fieldset>
+                <div class="form-group">
+                    <button class="btn btn-outline-info" type="submit">Sign Up</button>
+                </div>
+            </form>
+        </div>
     </div>
-</form>
+</div>
+
 {% endblock %}
