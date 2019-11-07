@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+<!--loading in django crispy forms tags-->
+{% block content %}
+<!-- Log in form Content-->
+<div class="container">
+    <div class="row mb-4">
+        <div class="col">
+            <h1>Log In</h1>
+            <form method="POST">
+                {% csrf_token %}<!--csrf token needed for all django forms for security-->
+                <fieldset class="form-group">
+                    <legend class="border-bottom mb-4">Log In</legend>
+                    {{ form |crispy }}<!-- styling form with django crispy forms-->
+                </fieldset>
+                <div class="form-group">
+                    <button class="btn btn-outline-info" type="submit">Log In</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
