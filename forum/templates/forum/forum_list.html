@@ -1,13 +1,44 @@
 {% extends "base.html" %}
 
 {% block content %}
+<div class="container">
+  <div class="=row">
+    <div class="col">
+        <div class="container mt-2 mb-2">
+            <div class="row">
+                <div class="col-md-8 order-2 order-md-1">
+                    <div class="card">
+                        <div class="card-body">
+                          <h5 class="card-title">Community</h5>
+                          <h6 class="card-subtitle mb-2 text-muted">Box subtitle</h6>
+                          <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos perferendi quaerat?</p>
+                          <a href="#" class="btn btn-info">I need the communitys help!</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 order-1">
+                    <div style="margin: auto; text-align: center; padding-top:3rem;">
+                        <i class="fa fa-comments-o fa-5x" aria-hidden="true"></i>
+                      </div>
+                    
+                  </div>
+              </div>
 
-{% for post in posts %}
-    <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
-      </div>
-      <h2><a href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
+      {% for post in posts %}
+    
+    
+    
+    <div class="card " style="text-align: left;">
+        <div class="card-body">
+          <h6 class="card-subtitle mb-2 text-muted">{{ post.date_posted|date:"F d, Y" }}</h6>
+          <h4><a href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h4>
+          <small>Posted by {{ post.author}}</small>
+        </div>
     </div>
-  </article>
-{% endfor %}
-
+    <hr>
+ 
+  {% endfor %}
+</div>
+</div>
+</div>
 {% endblock%}

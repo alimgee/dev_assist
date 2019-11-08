@@ -59,6 +59,12 @@ body{
     color: #757575;
     border-color: #757575;
 }
+
+hr{
+    width: 70%;
+    color: #757575;
+    
+}
 /* footer */
 .footer{
     line-height: 1rem;
