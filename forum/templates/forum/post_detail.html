@@ -8,4 +8,9 @@
    
     </div>
   </article>
+  {% for comment in comments %}
+  {{ comment.comment_by }}<br>
+  {{ comment.content }}<br>
+  {{ comment.comment_date }}<br>
+  {% endfor %}
 {% endblock content %}
