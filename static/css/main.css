@@ -16,6 +16,8 @@ body{
 
 .nav-item{
     color: #fafafa!important;
+   
+
 }
 .nav-item:hover {
     color: #757575!important;
@@ -25,7 +27,7 @@ body{
 }
 
 /* jumbotron */
-.jumbotron{
+.jumbotron-fluid{
     font-weight: bold; 
     background-color: white;
     text-align: center;
@@ -36,6 +38,12 @@ body{
 }
 .fa{
     color: #a8a9ad;
+}
+.fa-2x{
+    color: #757575;
+}
+.fa-2x:hover{
+    color: #fafafa;
 }
 /* footer */
 .footer{
