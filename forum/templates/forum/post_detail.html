@@ -4,13 +4,17 @@
         <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
       <h2 >{{ post.title }}</h2>
       <p >{{ post.content }}</p>
-        <p>Created by: {{ post.author }}</p>logged in user: {{ request.user.username }}<br>
+        <p>Created by: {{ post.author }}</p>logged in user: {{ request.user.username }}<br>post pk = {{ post.pk }}
    
     </div>
   </article>
   {% for comment in comments %}
+  {% if comment.query_id == post.pk %}
   {{ comment.comment_by }}<br>
   {{ comment.content }}<br>
   {{ comment.comment_date }}<br>
+  post {{ comment.query_id }}<br>
+  {% endif %}
+
   {% endfor %}
 {% endblock content %}

@@ -8,6 +8,7 @@ class PostListView(ListView):
     template_name = 'forum/forum_list.html' 
     context_object_name = 'posts'
     ordering = ['-date_posted']
+    
 
 class PostDetailView(DetailView):
     model = Post 
@@ -15,7 +16,7 @@ class PostDetailView(DetailView):
 
     def get_context_data(self, **kwargs):          
         context = super().get_context_data(**kwargs)                     
-        comments = "here it goes"
         context["comments"] = Comment.objects.all()
-        #context["posts"] = Post.objects.filter(post_id=Post.pk)
+        
+        
         return context
