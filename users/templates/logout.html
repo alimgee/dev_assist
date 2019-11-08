@@ -1,16 +1,26 @@
 {% extends "base.html" %}
 {% block content %}
+
+
 <div class="container">
-    <div class="row mb-4">
-        <div class="col">
-                <div class="alert alert-success">You have been logged out</div>
-            <div class="border-top pt-3">
-                <small class="text-muted">
-                    <a href="{% url 'login' %}">Log In Again</a>
-                </small>
+<div class="row">
+        <div class="col-md-8 order-2 order-md-1">
+            <div class="card">
+                <div class="card-body">
+                        <div class="alert alert-success">You have been logged out</div>
+                        <div class="border-top pt-3">
+                            <small class="text-muted">
+                                <a href="{% url 'login' %}" class="btn btn-info">Log In Again</a>
+                            </small>
+                        </div>
+                </div>
             </div>
         </div>
-    </div>
+        <div class="col-md-4 order-1">
+            <div style="margin: auto; text-align: center; padding-top:3rem;">
+                <i class="fa fa-sign-out fa-5x" aria-hidden="true"></i>
+              </div>
+          </div>
+      </div>
 </div>
-
 {% endblock content %}

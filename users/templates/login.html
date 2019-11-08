@@ -3,22 +3,31 @@
 <!--loading in django crispy forms tags-->
 {% block content %}
 <!-- Log in form Content-->
+
 <div class="container">
-    <div class="row mb-4">
-        <div class="col">
-            <h1>Log In</h1>
-            <form method="POST">
-                {% csrf_token %}<!--csrf token needed for all django forms for security-->
-                <fieldset class="form-group">
-                    <legend class="border-bottom mb-4">Log In</legend>
-                    {{ form |crispy }}<!-- styling form with django crispy forms-->
-                </fieldset>
-                <div class="form-group">
-                    <button class="btn btn-outline-info" type="submit">Log In</button>
+<div class="row">
+        <div class="col-md-8 order-2 order-md-1">
+            <div class="card">
+                <div class="card-body">
+                  <form method="POST">
+                        {% csrf_token %}<!--csrf token needed for all django forms for security-->
+                        <fieldset class="form-group">
+                            <legend class="border-bottom mb-4">Log In</legend>
+                            {{ form |crispy }}<!-- styling form with django crispy forms-->
+                        </fieldset>
+                        <div class="form-group">
+                            <button class="btn btn-info" type="submit">Log me in please!</button>
+                        </div>
+                    </form>
                 </div>
-            </form>
+            </div>
         </div>
-    </div>
-</div>
+        <div class="col-md-4 order-1">
+            <div style="margin: auto; text-align: center; padding-top:3rem;">
+                <i class="fa fa-sign-in fa-5x" aria-hidden="true"></i>
+              </div>
+          </div>
+      </div>
+      </div>
 
 {% endblock %}
