@@ -6,3 +6,5 @@ main/migrations/
 main/__pycache__/
 users/migrations/
 users/__pycache__/
+forum/__pycache__/
+forum/migrations/

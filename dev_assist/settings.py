@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main.apps.MainConfig',
     'users.apps.UsersConfig',
+    'forum.apps.ForumConfig',
     'crispy_forms' # for styling register and log in forms
 ]
 
