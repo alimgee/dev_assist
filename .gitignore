@@ -8,3 +8,4 @@ users/migrations/
 users/__pycache__/
 forum/__pycache__/
 forum/migrations/
+db.sqlite3.old
