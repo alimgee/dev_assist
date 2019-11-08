@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+  <article>
+        <small class="text-muted">{{ object.date_posted|date:"F d, Y" }}</small>
+      <h2 >{{ object.title }}</h2>
+      <p >{{ object.content }}</p>
+    </div>
+  </article>
+{% endblock content %}

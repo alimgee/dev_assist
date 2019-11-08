@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% for post in posts %}
+    <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
+      </div>
+      <h2><a href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
+    </div>
+  </article>
+{% endfor %}
+
+{% endblock%}
