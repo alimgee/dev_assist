@@ -35,6 +35,7 @@ body{
 /* index page card */
 .card{
     border: none;
+    text-align: center;
 }
 .fa{
     color: #a8a9ad;
@@ -44,6 +45,19 @@ body{
 }
 .fa-2x:hover{
     color: #fafafa;
+}
+
+/* homepage buttons */
+.btn-info{
+    font-size: .75rem;
+    background-color: #757575;
+    color: #fafafa;
+    border-color: #757575;
+}
+.btn-info:hover{
+    background-color: #fafafa;
+    color: #757575;
+    border-color: #757575;
 }
 /* footer */
 .footer{
