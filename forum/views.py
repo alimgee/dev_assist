@@ -10,4 +10,5 @@ class PostListView(ListView):
     ordering = ['-date_posted']
 
 class PostDetailView(DetailView):
-    model = Post # using default template settings
+    model = Post 
+    context_object_name = 'post'
