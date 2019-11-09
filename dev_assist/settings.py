@@ -52,6 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'dev_assist.urls'
@@ -136,13 +137,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 # STATIC FILES
-STATICFILES_LOCATION = "static"
+#STATICFILES_LOCATION = "static"
 
-STATIC_URL = "/static/"
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static")
-]
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = '/static/'
+
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # setting default location of /media folder
 MEDIA_URL = '/media/'
@@ -151,3 +154,5 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4' # telling django-crispy-forms to use bootstr
 
 LOGIN_REDIRECT_URL = 'home' # view to go to after logging in
 LOGIN_URL = 'login' # to redirect after registering to built in login view
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
