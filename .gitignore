@@ -2,9 +2,11 @@ venv/
 .vscode/
 dev_assist/__pycache__/
 main/migrations/
-main/__pycache__/
-users/migrations/
+accomain/__pycache__/
+account/migrations/
 users/__pycache__/
 forum/__pycache__/
 forum/migrations/
 db.sqlite3.old
+account/__pycache__/
+main/__pycache__/
