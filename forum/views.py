@@ -1,7 +1,6 @@
 from django.shortcuts import render, reverse, get_object_or_404
 from .models import Post, Comment
 from forum.forms import QueryForm
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import  CreateView, UpdateView
 
     
@@ -37,18 +36,3 @@ def create_query(request):
      }
      return render(request, "forum/post_form.html", context)
 
-
-class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
-    model = Post
-    fields = ['title', 'content']
-
-    def form_valid(self, form):
-        form.instance.author = self.request.user
-        return super().form_valid(form)
-
-    def test_func(self):# tests that user owns post using built in mixin
-        post = self.get_object()
-        if self.request.user == post.author:
-            return True
-        else:
-            return reverse('home')
