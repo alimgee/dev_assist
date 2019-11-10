@@ -38,15 +38,6 @@ def create_query(request):
      return render(request, "forum/post_form.html", context)
 
 
-class PostCreateView(CreateView):
-    model = Post
-    fields = ['title', 'content']
-    success_url = '/community/'
-
-    def form_valid(self, form):
-        form.instance.author = self.request.user
-        return super().form_valid(form)
-
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
     fields = ['title', 'content']
