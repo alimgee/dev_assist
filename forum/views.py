@@ -1,14 +1,8 @@
 from django.shortcuts import render, reverse, get_object_or_404
 from .models import Post, Comment
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.views.generic import  CreateView, UpdateView
 
-# Create view for showing forum posts
-class PostListView(ListView):
-    model = Post
-    template_name = 'forum/forum_list.html' 
-    context_object_name = 'posts'
-    ordering = ['-date_posted']
     
 # creating community page view using functions instead
 def community(request):
@@ -28,17 +22,6 @@ def query_detail(request, pk):
 
     }
     return render(request, "forum/post_detail.html", context)
-
-class PostDetailView(DetailView):
-    model = Post 
-    context_object_name = 'post'
-
-    def get_context_data(self, **kwargs):          
-        context = super().get_context_data(**kwargs)                     
-        context["comments"] = Comment.objects.all()
-        
-        
-        return context
     
 class PostCreateView(CreateView):
     model = Post
