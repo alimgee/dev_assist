@@ -8,7 +8,7 @@
    
     </div>
   </article>
-  <a href="{% url 'post-update' post.id %}" class="btn btn-info">Edit Query</a><br>
+  <a href="#" class="btn btn-info">Edit Query</a><br>
   {% for comment in comments %}
   {% if comment.query_id == post.pk %}
   {{ comment.comment_by }}<br>

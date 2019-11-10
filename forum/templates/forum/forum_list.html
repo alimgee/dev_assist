@@ -31,7 +31,7 @@
     <div class="card " style="text-align: left;">
         <div class="card-body">
           <h6 class="card-subtitle mb-2 text-muted">{{ post.date_posted|date:"F d, Y" }}</h6>
-          <h4><a href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h4>
+          <h4><a href="{% url 'post-detail' post.pk %}">{{ post.title }}</a></h4>
           <small>Posted by {{ post.author}}</small>
         </div>
     </div>
