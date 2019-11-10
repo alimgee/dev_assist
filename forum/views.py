@@ -52,23 +52,3 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
             return True
         else:
             return reverse('home')
-
-
-def post_edit(request, pk):
-    """ Edit a Single Ticket """
-    post = get_object_or_404(Post, pk=pk)
-    if request.method == "POST":
-        ticket_form = TicketForm(request.POST, instance=ticket)
-        if ticket_form.is_valid():
-            ticket_form.instance.date_edited = timezone.now()
-            ticket_form.save()
-            messages.success(
-                request, f"Ticket successfully updated!")
-            return redirect(tickets_view_one, ticket.pk)
-    else:
-        ticket_form = TicketForm(instance=ticket)
-    context = {
-        "ticket": ticket,
-        "ticket_form": ticket_form,
-    }
-    return render(request, "tickets_edit.html", context)
