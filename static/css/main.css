@@ -46,6 +46,9 @@ body{
 .fa-2x:hover{
     color: #fafafa;
 }
+.fa-size{
+    font-size: 10rem;
+}
 
 /* homepage buttons */
 .btn-info{
