@@ -10,12 +10,11 @@
   </article>
   <a href="#" class="btn btn-info">Edit Query</a><br>
   {% for comment in comments %}
-  {% if comment.query_id == post.pk %}
+ 
   {{ comment.comment_by }}<br>
   {{ comment.content }}<br>
   {{ comment.comment_date }}<br>
   post {{ comment.query_id }}<br>
-  {% endif %}
 
   {% endfor %}
 {% endblock content %}

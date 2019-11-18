@@ -16,7 +16,9 @@ def community(request):
 # creating query detail page view using functions instead
 def query_detail(request, pk):
     query_detail = get_object_or_404(Post, pk=pk)
-    comments = Comment.objects.all()
+    comment = Comment.query_id
+    # comments = Comment.objects.all()
+    comments = Comment.objects.filter(query_id = pk )
     context = {
         "post": query_detail,
         "comments":comments,
