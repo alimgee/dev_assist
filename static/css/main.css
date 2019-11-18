@@ -65,6 +65,11 @@ hr{
     color: #757575;
     
 }
+
+/* forms */
+.form-group{
+    text-align: left;
+}
 /* footer */
 .footer{
     line-height: 1rem;
