@@ -4,42 +4,67 @@
 <div class="container">
   <div class="=row">
     <div class="col">
-        <div class="container mt-2 mb-2">
-            <div class="row">
-                <div class="col-md-8 order-2 order-md-1">
-                    <div class="card">
-                        <div class="card-body">
-                          <h5 class="card-title">Community</h5>
-                          <h6 class="card-subtitle mb-2 text-muted">Box subtitle</h6>
-                          <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos perferendi quaerat?</p>
-                          <a href="{% url 'post-create' %}" class="btn btn-info">I need the communitys help!</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 order-1">
-                    <div style="margin: auto; text-align: center; padding-top:3rem;">
-                        <i class="fa fa-comments-o fa-5x" aria-hidden="true"></i>
-                      </div>
-                    
-                  </div>
+      <div class="container mt-2 mb-2">
+        <div class="row">
+          <div class="col-md-8 order-2 order-md-1">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Community</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Box subtitle</h6>
+                <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos perferendi
+                  quaerat?</p>
+                <a href="{% url 'post-create' %}" class="btn btn-info">I need the communitys help!</a>
               </div>
+            </div>
+          </div>
+          <div class="col-md-4 order-1">
+            <div style="margin: auto; text-align: center; padding-top:3rem;">
+              <i class="fa fa-comments-o fa-5x" aria-hidden="true"></i>
+            </div>
 
-      {% for post in posts %}
-    
-    
-    
-    <div class="card " style="text-align: left;">
-        <div class="card-body">
-          <h6 class="card-subtitle mb-2 text-muted">{{ post.date_posted|date:"F d, Y" }}</h6>
-          <h4><a href="{% url 'post-detail' post.pk %}">{{ post.title }}</a></h4>
-          <small>Posted by {{ post.author}}</small>
+          </div>
         </div>
+
+        {% for post in posts %}
+
+
+
+        <div class="card " style="text-align: left;">
+          <div class="card-body">
+            <h6 class="card-subtitle mb-2 text-muted">{{ post.date_posted|date:"F d, Y" }}</h6>
+            <h4><a href="{% url 'post-detail' post.pk %}">{{ post.title }}</a></h4>
+            <small>Posted by {{ post.author}}</small>
+          </div>
+        </div>
+        <hr>
+
+        {% endfor %}
+      </div>
     </div>
-    <hr>
+  </div>
  
-  {% endfor %}
-</div>
-</div>
-</div>
+
+
+  {% if posts.has_other_pages %}
+  <ul class="pagination">
+    {% if posts.has_previous %}
+      <li class="page-item"><a href="?page={{ posts.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in posts.paginator.page_range %}
+      {% if posts.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if posts.has_next %}
+      <li class="page-item"><a href="?page={{ posts.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
 
 {% endblock%}

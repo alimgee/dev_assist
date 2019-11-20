@@ -3,13 +3,19 @@ from django.contrib import messages
 from .models import Post, Comment
 from forum.forms import QueryForm
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 
     
 # creating community page view using functions instead
 def community(request):
     querys = Post.objects.all()
+    page = request.GET.get('page', 1)
+    print(f' page is {page}')
+    paginator = Paginator(querys, 3)
+    post_pag = paginator.get_page(page)
     context = {
-        "posts": querys
+        
+        "posts": post_pag
     }
     return render(request, "forum/forum_list.html", context)
 
