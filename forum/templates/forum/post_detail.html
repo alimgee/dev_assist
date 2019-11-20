@@ -9,6 +9,7 @@
     </div>
   </article>
   <a href="{% url 'post-edit' post.id%}" class="btn btn-info">Edit Query</a><br>
+  <a href="#" class="btn btn-info">Delete Query</a><br>
   {% for comment in comments %}
  
   {{ comment.comment_by }}<br>

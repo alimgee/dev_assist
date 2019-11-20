@@ -68,3 +68,21 @@ def edit_query(request, pk):
         "form": query_form,
     }
     return render(request, "forum/edit_form.html", context)
+
+@login_required
+def delete_query(request, pk):
+    '''
+    Function to allow Query owner to delete their post
+    '''
+    query = get_object_or_404(Post, pk=pk)
+    logged_user = request.user.id
+    author = query.author.id
+
+    if logged_user is not author:
+        messages.warning(request, f'You are not the current owner of this query')
+        return redirect('posts')
+
+    query.delete()
+    messages.success(
+        request, f"Your Post has now been removed")
+    return redirect('posts')
