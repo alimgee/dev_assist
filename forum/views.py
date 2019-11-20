@@ -43,3 +43,20 @@ def create_query(request):
      }
      return render(request, "forum/post_form.html", context)
 
+def edit_query(request, pk):
+    ''' Function to allow a user to edit their own query'''
+    query = get_object_or_404(Ticket, pk=pk)
+    if request.method == "POST":
+        query_form = Form(request.POST, instance=query)
+        if query_form.is_valid():
+            #query_form.instance.date_posted = timezone.now()
+            query_form.save()
+            messages.success(
+                request, f"You have successfully changed your query")
+            return redirect(query_detail, query.pk)
+    else:
+        query_form = QueryForm(instance=query)
+    context = {
+        "query_form": query_form,
+    }
+    return render(request, "post_form.html", context)
