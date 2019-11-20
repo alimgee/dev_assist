@@ -8,7 +8,7 @@ class Post(models.Model):
     title = models.CharField(max_length=100)
     content = models.TextField()
     date_posted = models.DateTimeField(default=timezone.now)
-    author = models.ForeignKey(User, on_delete=models.CASCADE, default=1) # cascade -  when user is deleted remove all posts
+    author = models.ForeignKey(User, on_delete=models.CASCADE) # cascade -  when user is deleted remove all posts
 
     class Meta:
         ordering = ("-date_posted", )
