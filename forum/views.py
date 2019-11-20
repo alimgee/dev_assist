@@ -46,7 +46,11 @@ def create_query(request):
 def edit_query(request, pk):
     ''' Function to allow a user to edit their own query'''
     query = get_object_or_404(Post, pk=pk)
-    print(User)
+    # checking if current user owns the request they want to edit
+    if logged_user is not author:
+        messages.warning(request, f'You are not the author of this post')
+        return redirect('posts')
+
     if request.method == "POST":
         query_form = QueryForm(request.POST, instance=query)
         if query_form.is_valid():
