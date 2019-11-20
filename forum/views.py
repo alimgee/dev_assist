@@ -45,7 +45,7 @@ def create_query(request):
 
 def edit_query(request, pk):
     ''' Function to allow a user to edit their own query'''
-    query = get_object_or_404(Ticket, pk=pk)
+    query = get_object_or_404(Post, pk=pk)
     if request.method == "POST":
         query_form = Form(request.POST, instance=query)
         if query_form.is_valid():
@@ -59,4 +59,4 @@ def edit_query(request, pk):
     context = {
         "query_form": query_form,
     }
-    return render(request, "post_form.html", context)
+    return render(request, "forum/edit_form.html", context)
