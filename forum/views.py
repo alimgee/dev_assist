@@ -47,7 +47,7 @@ def edit_query(request, pk):
     ''' Function to allow a user to edit their own query'''
     query = get_object_or_404(Post, pk=pk)
     if request.method == "POST":
-        query_form = Form(request.POST, instance=query)
+        query_form = QueryForm(request.POST, instance=query)
         if query_form.is_valid():
             #query_form.instance.date_posted = timezone.now()
             query_form.save()
@@ -57,6 +57,6 @@ def edit_query(request, pk):
     else:
         query_form = QueryForm(instance=query)
     context = {
-        "query_form": query_form,
+        "form": query_form,
     }
     return render(request, "forum/edit_form.html", context)

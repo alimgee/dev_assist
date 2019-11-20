@@ -1,8 +1,6 @@
 language: python
-python: 
-  - 3.7
+python:
+  - "3.4"
 install: "pip install -r requirements.txt"
 script:
-  - python3 ./manage.py makemigrations
-  - python3 ./manage.py migrate
-  - SECRET_KEY="whateveritmaybe" python ./manage.py test
+  - SECRET_KEY="whatever" ./manage.py test
