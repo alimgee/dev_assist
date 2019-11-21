@@ -32,14 +32,16 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav ml-auto ">
                     {% if user.is_authenticated %}
-                    <a class="nav-item nav-link " href="{% url 'home' %}"><i class="fa fa-home fa-2x" aria-hidden="true"></i>  </a>
-                    <a class="nav-item nav-link " href="{% url 'about' %}"><i class="fa fa-info fa-2x" aria-hidden="true"></i> </a>
-                    <a class="nav-item nav-link " href="{% url 'logout' %}"><i class="fa fa-sign-out fa-2x" aria-hidden="true"></i>Logout</a>
+                    <a class="nav-item nav-link " href="{% url 'home' %}" title="Home"><i class="fa fa-home fa-2x" aria-hidden="true"></i>  </a>
+                    <a class="nav-item nav-link " href="{% url 'about' %}" title="About"><i class="fa fa-info fa-2x" aria-hidden="true"></i> </a>
+                    <a class="nav-item nav-link " href="{% url 'posts' %}" title="Community"><i class="fa fa-comments-o fa-2x" aria-hidden="true"></i> </a>
+                    <a class="nav-item nav-link " href="{% url 'logout' %}" title="Log Out"><i class="fa fa-sign-out fa-2x" aria-hidden="true"></i>Logout</a>
                     {% else %}
-                    <a class="nav-item nav-link " href="{% url 'home' %}"><i class="fa fa-home fa-2x" aria-hidden="true"></i>  </a>
-                    <a class="nav-item nav-link " href="{% url 'about' %}"><i class="fa fa-info fa-2x" aria-hidden="true"></i>  </a>
-                    <a class="nav-item nav-link " href="{% url 'login' %}"><i class="fa fa-sign-in fa-2x" aria-hidden="true"></i> Log In </a>
-                    <a class="nav-item nav-link " href="{% url 'register' %}"><i class="fa fa-id-badge fa-2x" aria-hidden="true"></i> Register</a>
+                    <a class="nav-item nav-link " href="{% url 'home' %}" title="Home"><i class="fa fa-home fa-2x" aria-hidden="true"></i>  </a>
+                    <a class="nav-item nav-link " href="{% url 'about' %}" title="About"><i class="fa fa-info fa-2x" aria-hidden="true"></i>  </a>
+                    <a class="nav-item nav-link " href="{% url 'posts' %}" title="Community"><i class="fa fa-comments-o fa-2x" aria-hidden="true"></i> </a>
+                    <a class="nav-item nav-link " href="{% url 'login' %}" title="Log In"><i class="fa fa-sign-in fa-2x" aria-hidden="true"></i> Log In </a>
+                    <a class="nav-item nav-link " href="{% url 'register' %}" title="Register"><i class="fa fa-id-badge fa-2x" aria-hidden="true"></i> Register</a>
                     {% endif %}
                 </div>
             </div>
