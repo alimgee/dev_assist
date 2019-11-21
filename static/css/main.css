@@ -69,6 +69,22 @@ hr{
     
 }
 
+/* community landing page */
+.query{
+    text-align: left;
+}
+.page-item.active .page-link{
+    background-color: #757575;
+    border-color: #757575;
+}
+.page-link{
+    color: #757575;
+}
+.article-title{
+    color: #757575;
+}
+
+
 /* forms */
 .form-group{
     text-align: left;
