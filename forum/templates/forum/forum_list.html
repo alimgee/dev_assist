@@ -23,9 +23,9 @@
 </div>
 <div class="container mt-2 mb-2">
   {% for post in posts %}
-  <div class="row">
+  <div class="row mb-3">
     <div class="col">
-      <div class="card">
+      <div class="card query-card">
         <div class="card-body query">
           
           <p class="card-subtitle mb-2 text-muted small"><i class="fa fa-comment" aria-hidden="true"></i>  {{ post.date_posted|date:"F d, Y" }}</p>
@@ -36,7 +36,7 @@
       </div>
     </div>
   </div>
-  <hr>
+  
 
   {% endfor %}
 

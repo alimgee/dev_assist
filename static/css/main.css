@@ -83,6 +83,13 @@ hr{
 .article-title{
     color: #757575;
 }
+.query-card{
+   border-style: solid; 
+   border-color: #a8a9ad;
+   border-radius: 1rem;
+   border-width: thin;
+
+}
 
 
 /* forms */
