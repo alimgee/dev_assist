@@ -1,6 +1,6 @@
 from django import forms
 from datetime import datetime
-from forum.models import Post
+from forum.models import Post, Comment
 
 class QueryForm(forms.ModelForm):
     '''form for sbmitting a new query'''
@@ -20,4 +20,16 @@ class QueryForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ["title", "content"]
-   
+
+class CommentForm(forms.ModelForm):
+    '''form for sbmitting a new query'''
+    content = forms.CharField(
+        label="Comment Detail",
+        min_length=10,
+        max_length=1500,
+        widget=forms.Textarea(),
+        required=True)
+
+    class Meta:
+        model = Comment
+        fields = ["content"]

@@ -18,7 +18,7 @@ class Post(models.Model):
 
   
 class Comment(models.Model):
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=100, default=1)
     content = models.TextField(max_length=1500, null=True)
     date_posted = models.DateTimeField(default=timezone.now)
     query = models.ForeignKey(Post, null=True, on_delete=models.CASCADE)

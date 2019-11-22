@@ -35,6 +35,7 @@
           <p class="card-subtitle mb-2 text-muted small"><span class="delete-post"><a href="#" title="Delete Query"><i
                   class="fa fa-times fa-3x" aria-hidden="true"></i></a></span> </p>
           {% endif %}
+          <small> Original post:  {{comment.query}}</small>
           <p>{{ comment.content  }}</p>
           <small>Comment by {{ comment.comment_by }} <i class="fa fa-user" aria-hidden="true"></i> <br><i
               class="fa fa-comments-o" aria-hidden="true"></i>
