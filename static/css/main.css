@@ -63,12 +63,6 @@ body{
     border-color: #757575;
 }
 
-hr{
-    width: 70%;
-    color: #757575;
-    
-}
-
 /* community landing page */
 .query{
     text-align: left;
@@ -88,9 +82,25 @@ hr{
    border-color: #a8a9ad;
    border-radius: 1rem;
    border-width: thin;
-
 }
-
+.comment{
+    text-align: left;
+}
+.comment-card{
+    border-style: dashed; 
+    border-color: #a8a9ad;
+    border-radius: 1rem;
+    border-width: thin;
+    width: 90%;
+    margin: auto;
+ }
+ .comment-link:hover{
+    color: #757575;
+ }
+.delete-post{
+    margin-right: 1rem;
+    display: inline-block;
+}
 
 /* forms */
 .form-group{
