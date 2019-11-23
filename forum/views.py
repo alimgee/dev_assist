@@ -4,6 +4,7 @@ from .models import Post, Comment
 from forum.forms import QueryForm, CommentForm
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
+from django.contrib.auth.models import User
 
     
 # creating community page view using functions instead
@@ -25,15 +26,14 @@ def query_detail(request, pk):
     comment = Comment.query_id
     user = request.user
     comment_form = CommentForm()
-    comment_form.instance.comment_by = user
-    print(comment_form.instance.comment_by)
+
     if request.method == 'POST':
         comment_form = CommentForm(request.POST or None)
         if comment_form.is_valid():
-            comment_form.instance.comment_by = user
             comment = comment_form.save(commit=False)
             comment.query = query_detail
             comment.title = query_detail.title
+            comment.comment_by = request.user
             comment.save()
             messages.success(request, f'Comment added sucessfully')
             return redirect('post-detail', pk = query_detail.pk)
