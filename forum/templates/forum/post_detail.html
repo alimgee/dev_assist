@@ -19,8 +19,8 @@
           {{ post.date_posted|date:"F d, Y" }} by {{ post.author}} <i class="fa fa-user" aria-hidden="true"></i>
         </small>
         <div class="row mt-2">
-          <div class="col"><a class="comment-link" href="{% url 'post-edit' post.id%}" title="Add Comment"><i
-                class="fa fa-comments fa-3x" aria-hidden="true"></i></a></div>
+          <div class="col"><a class="comment-link" href="#comment-form" title="Add Comment" data-toggle="collapse" ><i
+                class="fa fa-comments fa-3x" aria-hidden="true"></i></a><small>Add comment</small></div>
         </div>
       </div>
     </div>
@@ -28,18 +28,22 @@
 </div>
 <div class="container">
  <!--comment form -->
- <div class="content-section">
+ <div class="row comment-form mt-2 mb-2 collapse" id="comment-form" >
+   <div class="col">
+
     <form method="POST">
         {% csrf_token %}
         <fieldset class="form-group">
-            <legend class="border-bottom mb-4">Add your comment</legend>
+            
             {{ form|crispy }}
             
         </fieldset>
         <div class="form-group">
-            <button class="btn btn-outline-info" type="submit">Submit comment</button>
+            <button class="btn btn-info" type="submit">Submit comment</button>
         </div>
     </form>
+    </div>
+
 </div>
   {% for comment in comments %}
   <div class="row">
