@@ -1,7 +1,7 @@
 from django.shortcuts import render, reverse, get_object_or_404, redirect
 from django.contrib import messages
 from .models import Post, Comment
-from forum.forms import QueryForm
+from forum.forms import QueryForm, CommentForm
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 
@@ -23,11 +23,26 @@ def community(request):
 def query_detail(request, pk):
     query_detail = get_object_or_404(Post, pk=pk)
     comment = Comment.query_id
-    # comments = Comment.objects.all()
+    user = request.user
+    comment_form = CommentForm()
+    comment_form.instance.comment_by = user
+    print(comment_form.instance.comment_by)
+    if request.method == 'POST':
+        comment_form = CommentForm(request.POST or None)
+        if comment_form.is_valid():
+            comment_form.instance.comment_by = user
+            comment = comment_form.save(commit=False)
+            comment.query = query_detail
+            comment.title = query_detail.title
+            comment.save()
+            messages.success(request, f'Comment added sucessfully')
+            return redirect('post-detail', pk = query_detail.pk)
+
     comments = Comment.objects.filter(query_id = pk )
     context = {
         "post": query_detail,
         "comments":comments,
+        "form": comment_form
 
     }
     return render(request, "forum/post_detail.html", context)
