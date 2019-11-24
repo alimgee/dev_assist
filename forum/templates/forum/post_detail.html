@@ -7,7 +7,7 @@
     <div class="card query-card">
       <div class="card-body query">
         {% if user.is_authenticated %}
-        <p class="card-subtitle mb-2 text-muted small"><span class="delete-post"><a href="#" title="Delete Query"><i
+        <p class="card-subtitle mb-2 text-muted small"><span class="delete-post"><a href="#deleteModal"  data-toggle="modal" title="Delete Query"><i
                 class="fa fa-times fa-3x" aria-hidden="true"></i></a><small>Delete Post</small></span>
           <span class="edit-post"><a href="{% url 'post-edit' post.id%}" title="Edit Post"><i class="fa fa-pencil fa-3x"
                 aria-hidden="true"></i>
@@ -69,5 +69,5 @@
   </div>
   {% endfor %}
 </div>
-
+{% include 'forum/includes/modals.html'%}
 {% endblock content %}

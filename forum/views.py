@@ -80,13 +80,16 @@ def create_query(request):
      '''
      function to create a post
      '''
+     user = request.user
      # if form is submitted
      if request.method == "POST":
          # getting form
          query_form = QueryForm(request.POST)
          # if form is valid save and message
          if query_form.is_valid():
-             query_form.save()
+             query = query_form.save(commit=False)
+             query.author = user
+             query.save()
              messages.success(request, f'Thanks for submiting your ticket')
              return redirect('posts')
      else:

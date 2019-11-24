@@ -1,0 +1,25 @@
+<!-- Modal for deleting a Post including warning to user -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-danger" id="deleteModalLabel"><strong>Delete Post - Warning!!</strong></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>You are about to delete your Post "<span class="text-capitalize"><strong> {{ post.title }}  </strong>"</span></p>
+        <p class="text-danger"><strong>Are you sure?</strong></p>
+        <p class="text-danger">You cannot retrieve the details of this Post once deleted.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <!--delte post button-->
+        <a href="{% url 'post-delete' post.id%}" class="btn btn-danger" title="Delete Post">Delete Review</a>
+      </div>
+    </div>
+  </div>
+</div>
+
