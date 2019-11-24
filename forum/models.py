@@ -22,7 +22,7 @@ class Comment(models.Model):
     content = models.TextField(max_length=1500, null=True)
     date_posted = models.DateTimeField(default=timezone.now)
     query = models.ForeignKey(Post, null=True, on_delete=models.CASCADE)
-    comment_by = models.ForeignKey(User,null=True,on_delete=models.CASCADE)
+    comment_by = models.ForeignKey(User, on_delete=models.CASCADE) 
     comment_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

@@ -1,18 +1,25 @@
 from django.shortcuts import render, reverse, get_object_or_404, redirect
 from django.contrib import messages
-from .models import Post, Comment
+from forum.models import Post, Comment
 from forum.forms import QueryForm, CommentForm
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.contrib.auth.models import User
 
     
-# creating community page view using functions instead
 def community(request):
+    ''' 
+    Function to load the forum landing page
+    at /community and display any current posts
+    in the db
+    '''
     querys = Post.objects.all()
+    # adding pagination settings
+    # return current page default is 1
     page = request.GET.get('page', 1)
-    print(f' page is {page}')
+    # setting paginator to show 3 posts
     paginator = Paginator(querys, 3)
+    # passing current page to context
     post_pag = paginator.get_page(page)
     context = {
         
@@ -20,25 +27,45 @@ def community(request):
     }
     return render(request, "forum/forum_list.html", context)
 
-# creating query detail page view using functions instead
-def query_detail(request, pk):
-    query_detail = get_object_or_404(Post, pk=pk)
-    comment = Comment.query_id
-    user = request.user
-    comment_form = CommentForm()
 
+def query_detail(request, pk):
+    '''
+    function to show a single post detail, also
+    displays any comments associated with a
+    post and allows logged in users to add
+    comments to post
+    '''
+    query_detail = get_object_or_404(Post, pk=pk)
+    # getting current session user
+    user = request.user
+    # Creating comment form
+    comment_form = CommentForm()
+    # if form is submitted
     if request.method == 'POST':
+        # checking user is logged in
+        logged_user = request.user.id
+        # dont let non logged in user add comment
+        if not logged_user:
+            messages.warning(request, f'You must be logged in to comment')
+            return redirect('posts')
+        # take submitted form
         comment_form = CommentForm(request.POST or None)
-        if comment_form.is_valid():
+        # if submitted form is valid save it to db
+        if comment_form.is_valid():         
             comment = comment_form.save(commit=False)
+            # link query foregin key
             comment.query = query_detail
+            # adding detail to title field
             comment.title = query_detail.title
-            comment.comment_by = request.user
+            # adding user to foreign key field
+            comment.comment_by = user
             comment.save()
+            # message user and reload post detail page
             messages.success(request, f'Comment added sucessfully')
             return redirect('post-detail', pk = query_detail.pk)
-
+    # finding comments related to current post
     comments = Comment.objects.filter(query_id = pk )
+    # adding to context and returning to post detail page
     context = {
         "post": query_detail,
         "comments":comments,
@@ -47,19 +74,25 @@ def query_detail(request, pk):
     }
     return render(request, "forum/post_detail.html", context)
 
-# create form to add query
+
 @login_required
 def create_query(request):
-     """ Create a new query """
+     '''
+     function to create a post
+     '''
+     # if form is submitted
      if request.method == "POST":
+         # getting form
          query_form = QueryForm(request.POST)
+         # if form is valid save and message
          if query_form.is_valid():
              query_form.save()
              messages.success(request, f'Thanks for submiting your ticket')
              return redirect('posts')
      else:
+         # loading form for psots
          query_form = QueryForm()
-
+     # passing form to context and loading page
      context = {
          "form": query_form,
      }

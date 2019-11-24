@@ -7,10 +7,10 @@
       <div class="card-body query">
         {% if user.is_authenticated %}
         <p class="card-subtitle mb-2 text-muted small"><span class="delete-post"><a href="#" title="Delete Query"><i
-                class="fa fa-times fa-3x" aria-hidden="true"></i></a></span>
+                class="fa fa-times fa-3x" aria-hidden="true"></i></a><small>Delete Post</small></span>
           <span class="edit-post"><a href="{% url 'post-edit' post.id%}" title="Edit Post"><i class="fa fa-pencil fa-3x"
                 aria-hidden="true"></i>
-            </a></span>
+            </a><small>Edit Post</small></span>
         </p>
         {% endif %}
         <h4><a class="article-title" href="{% url 'post-detail' post.pk %}">{{ post.title }}</a></h4>
@@ -18,10 +18,12 @@
         <small><i class="fa fa-comment" aria-hidden="true"></i>
           {{ post.date_posted|date:"F d, Y" }} by {{ post.author}} <i class="fa fa-user" aria-hidden="true"></i>
         </small>
+        {% if user.is_authenticated %}
         <div class="row mt-2">
           <div class="col"><a class="comment-link" href="#comment-form" title="Add Comment" data-toggle="collapse" ><i
                 class="fa fa-comments fa-3x" aria-hidden="true"></i></a><small>Add comment</small></div>
         </div>
+        {% endif %}
       </div>
     </div>
   </div>
