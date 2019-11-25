@@ -15,3 +15,4 @@ def add_to_cart(request, id):
 
     request.session['cart'] = cart
     return redirect(reverse('view-cart'))
+

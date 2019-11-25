@@ -6,5 +6,18 @@
 <div class="container mt-2 mb-2">
     
 <h1>Cart</h1>
+{{ donation_count }} items at a total cost of: {{ total }}<br>
+<hr>
+{% for item in cart_items %}
+ Donation type: {{ item.donation}} price: {{ item.donation.price}} donation id: {{ item.id }} 
+ <form method="post" action="{% url 'delete-from-cart' item.id %}">
+    {% csrf_token %}
+    <div class="input-group">
+        <span class="input-group-btn">
+            <button class="btn btn-info" type="submit">Remove</button>
+        </span>
+    </div>
+</form>
+{% endfor%} 
 </div>
 {% endblock %}
