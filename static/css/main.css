@@ -109,7 +109,23 @@ body{
     width: 90%;
     margin: auto;
 }
-
+/* Donation page */
+.donate-description{
+    display: inline-block;
+    margin-right: 2rem;
+}
+.donate-price{
+    display: inline-block;
+    font-size: 1.5rem;
+}
+.doante-cart{
+    color: #757575;
+    display: inline-block;
+    font-size: 1.5rem;
+}
+.fa-cart-plus:hover{
+    color: #a8a9ad!important;
+}
 /* forms */
 .form-group{
     text-align: left;

@@ -6,6 +6,7 @@ def donations(request):
     donations = Donation.objects.all()
     context = {
         
-        "donations": donations
+        "donations": donations,
+        "title" : 'Donations'
     } 
-    return render(request, 'donation/donation.html', context , {'title': 'Donation'}) 
+    return render(request, 'donation/donation.html', context ) 

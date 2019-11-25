@@ -10,8 +10,11 @@
                 <div class="card-body query">
 
                     <h4>{{ item.name }}</h4>
-                    <p>{{ item.description}} </p>
-                    <p>Price: &euro;{{ item.price }}</p>
+                    <p><span class="donate-description">{{ item.description}}</span> 
+                        <span class="donate-price">&euro;{{ item.price }}</span>
+                        <span class="donate-cart"><i class="fa fa-cart-plus fa-2x " aria-hidden="true"></i>
+                        </span> 
+                    </p>
                 </div>
             </div>
         </div>
