@@ -1,4 +1,8 @@
-<h1>Donation</h1>
+{% extends "base.html" %}
+
+{% block content %}
+{% include 'donation/includes/intro.html' %}
+
 
 {% for item in donations %}
 Name: {{ item.name }}<br>
@@ -6,3 +10,5 @@ Des: {{ item.description }}<br>
 Price: &euro;{{ item.price }}<br>
 
 {% endfor %}
+
+{% endblock %}
