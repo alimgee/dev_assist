@@ -126,6 +126,17 @@ body{
 .fa-cart-plus:hover{
     color: #a8a9ad!important;
 }
+
+/* cart page */
+.cart-description{
+    display: inline-block;
+    margin-right: 2rem;
+}
+.cart-price{
+    display: inline-block;
+    font-size: 1.5rem;
+    margin-right: 2rem;
+}
 /* forms */
 .form-group{
     text-align: left;

@@ -5,15 +5,27 @@
 
 <div class="container mt-2 mb-2">
     
-<h1>Cart</h1>
-{{ donation_count }} item(s) at a total cost of: &euro;{{ total }}<br>
+
+<p>{{ donation_count }} item(s) at a total cost of: &euro;{{ total }}</p>
 <hr>
 {% for item in cart_items %}
- Donation type: {{ item.donation}} price: {{ item.donation.price}} donation id: {{ item.id }} 
- <span class="donate-cart"><a href="{% url 'delete-from-cart' item.id %}">
-        <i class="fa fa-times fa-2x " aria-hidden="true"></i></a> <small>Delete from
-            Cart</small>
-    </span>
+  <div class="row mb-2">
+            <div class="col">
+                <div class="card query-card">
+                    <div class="card-body query">
+                        <p><span class="cart-description">Donation type: {{ item.donation}}</span>
+                            <span class="cart-price">price: &euro;{{ item.donation.price}}</span>
+                            <span class="donate-cart"><a href="{% url 'delete-from-cart' item.id %}">
+                                    <i class="fa fa-times fa-2x " aria-hidden="true"></i></a> <small>Delete from
+                                        Cart</small>
+                                </span>
+                            </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 {% endfor%} 
 </div>
 {% endblock %}
