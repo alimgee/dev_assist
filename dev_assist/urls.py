@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from account import views as user_views
+from donation import views as donation_view
 from django.contrib.auth import views as auth_views # importing built in loginveiw
 
 
@@ -29,5 +30,6 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(template_name='logout.html'), name='logout'),
     path('community/', include('forum.urls')),
     path('cart/', include('cart.urls')),
+    path('donate/', donation_view.donations, name='donations'),
 
 ]

@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'account.apps.AccountConfig',
     'forum.apps.ForumConfig',
     'cart.apps.CartConfig',
+    'donation.apps.DonationConfig',
     'crispy_forms' # for styling register and log in forms
 ]
 
