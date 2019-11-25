@@ -1,1 +1,8 @@
 <h1>Donation</h1>
+
+{% for item in donations %}
+Name: {{ item.name }}<br>
+Des: {{ item.description }}<br>
+Price: &euro;{{ item.price }}<br>
+
+{% endfor %}
