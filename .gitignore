@@ -10,3 +10,5 @@ forum/migrations/
 db.sqlite3.old
 account/__pycache__/
 main/__pycache__/
+cart/__pycache__/
+cart/migrations/__pycache__/__init__.cpython-37.pyc

@@ -28,5 +28,6 @@ urlpatterns = [
     # using the built in log out functionality
     path('logout/', auth_views.LogoutView.as_view(template_name='logout.html'), name='logout'),
     path('community/', include('forum.urls')),
+    path('cart/', include('cart.urls')),
 
 ]
