@@ -12,7 +12,7 @@
     <!-- font awesome cdn-->
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
         integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static 'css/main.css' %}">    
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
     {% if title %}
     <title>DevAssist - {{ title }}</title>
     {% else %}
@@ -32,64 +32,83 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav ml-auto ">
                     {% if user.is_authenticated %}
-                    <a class="nav-item nav-link " href="{% url 'home' %}" title="Home"><i class="fa fa-home fa-2x" aria-hidden="true"></i>  </a>
-                    <a class="nav-item nav-link " href="{% url 'about' %}" title="About"><i class="fa fa-info fa-2x" aria-hidden="true"></i> </a>
-                    <a class="nav-item nav-link " href="{% url 'posts' %}" title="Community"><i class="fa fa-comments-o fa-2x" aria-hidden="true"></i> </a>
-                    <a class="nav-item nav-link " href="{% url 'logout' %}" title="Log Out"><i class="fa fa-sign-out fa-2x" aria-hidden="true"></i>Logout</a>
+                    <a class="nav-item nav-link " href="{% url 'view-cart' %}" title="Cart"><i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i>
+                    </i>
+                            {% if donation_count > 0 %}
+                            <label class="badge badge-warning">{{ donation_count }}</label>
+                            {% endif %}
+                        </a>
+                        <a class="nav-item nav-link " href="{% url 'donations' %}" title="donate"><i class="fa fa-money fa-2x"
+                            aria-hidden="true"></i> </a>
+                    <a class="nav-item nav-link " href="{% url 'home' %}" title="Home"><i class="fa fa-home fa-2x"
+                            aria-hidden="true"></i> </a>
+                    <a class="nav-item nav-link " href="{% url 'about' %}" title="About"><i class="fa fa-info fa-2x"
+                            aria-hidden="true"></i> </a>
+                    <a class="nav-item nav-link " href="{% url 'posts' %}" title="Community"><i
+                            class="fa fa-comments-o fa-2x" aria-hidden="true"></i> </a>
+                    <a class="nav-item nav-link " href="{% url 'logout' %}" title="Log Out"><i
+                            class="fa fa-sign-out fa-2x" aria-hidden="true"></i>Logout</a>
                     {% else %}
-                    <a class="nav-item nav-link " href="{% url 'home' %}" title="Home"><i class="fa fa-home fa-2x" aria-hidden="true"></i>  </a>
-                    <a class="nav-item nav-link " href="{% url 'about' %}" title="About"><i class="fa fa-info fa-2x" aria-hidden="true"></i>  </a>
-                    <a class="nav-item nav-link " href="{% url 'posts' %}" title="Community"><i class="fa fa-comments-o fa-2x" aria-hidden="true"></i> </a>
-                    <a class="nav-item nav-link " href="{% url 'login' %}" title="Log In"><i class="fa fa-sign-in fa-2x" aria-hidden="true"></i> Log In </a>
-                    <a class="nav-item nav-link " href="{% url 'register' %}" title="Register"><i class="fa fa-id-badge fa-2x" aria-hidden="true"></i> Register</a>
+                    <a class="nav-item nav-link " href="{% url 'donations' %}" title="donate"><i class="fa fa-money fa-2x"
+                        aria-hidden="true"></i> </a>
+                    <a class="nav-item nav-link " href="{% url 'home' %}" title="Home"><i class="fa fa-home fa-2x"
+                            aria-hidden="true"></i> </a>
+                    <a class="nav-item nav-link " href="{% url 'about' %}" title="About"><i class="fa fa-info fa-2x"
+                            aria-hidden="true"></i> </a>
+                    <a class="nav-item nav-link " href="{% url 'posts' %}" title="Community"><i
+                            class="fa fa-comments-o fa-2x" aria-hidden="true"></i> </a>
+                    <a class="nav-item nav-link " href="{% url 'login' %}" title="Log In"><i class="fa fa-sign-in fa-2x"
+                            aria-hidden="true"></i> Log In </a>
+                    <a class="nav-item nav-link " href="{% url 'register' %}" title="Register"><i
+                            class="fa fa-id-badge fa-2x" aria-hidden="true"></i> Register</a>
                     {% endif %}
                 </div>
             </div>
-                </nav>
+        </nav>
         <!-- curvy top from smooth.ie-->
         <div style="height: 3rem; overflow: hidden;"><svg viewBox="0 0 500 150" preserveAspectRatio="none"
-            style="height: 100%; width: 100%;">
-            <path d="M-0.28,24.97 C194.41,62.47 271.49,-50.00 500.84,34.83 L500.00,0.00 L0.00,0.00 Z"
-                style="stroke: none; fill: #a8a9ad"></path>
-        </svg></div>
-            </header>
+                style="height: 100%; width: 100%;">
+                <path d="M-0.28,24.97 C194.41,62.47 271.49,-50.00 500.84,34.83 L500.00,0.00 L0.00,0.00 Z"
+                    style="stroke: none; fill: #a8a9ad"></path>
+            </svg></div>
+    </header>
     <main>
 
-            
 
-                <div class="container">
-                {% if messages %}
-                {% for message in messages %}
-                <div class="alert alert-{{ message.tags }}">
-                    {{ message }}
-                </div>
-                {% endfor %}
-                {% endif %}
+
+        <div class="container">
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message }}
             </div>
+            {% endfor %}
+            {% endif %}
+        </div>
 
-            {% block content %}{% endblock %}
+        {% block content %}{% endblock %}
 
-            </main>  
-            <!-- curvy bottom border-->
-            <div style="height: 4rem; overflow: hidden;">
-                <!-- Generated by https://smooth.ie/blogs/news/svg-wavey-transitions-between-sections -->
-                <svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;">
-                    <path d="M-2.55,113.77 C150.00,150.00 352.99,14.10 502.54,107.85 L500.00,150.00 L0.00,150.00 Z"
-                        style="stroke: none; fill: #a8a9ad"></path>
-                </svg>
-            </div>
-    
-            <footer>
-                <div class="footer">
-                    <!-- disclaimer -->
-                    <p>Site is purely for education purpose only. <br> &copy; Alan Mc Gee</p>
-                </div>
+    </main>
+    <!-- curvy bottom border-->
+    <div style="height: 4rem; overflow: hidden;">
+        <!-- Generated by https://smooth.ie/blogs/news/svg-wavey-transitions-between-sections -->
+        <svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;">
+            <path d="M-2.55,113.77 C150.00,150.00 352.99,14.10 502.54,107.85 L500.00,150.00 L0.00,150.00 Z"
+                style="stroke: none; fill: #a8a9ad"></path>
+        </svg>
+    </div>
 
-            </footer>
-            <!-- bootstrap 4 -->
-            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js "></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js "></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js "></script>
+    <footer>
+        <div class="footer">
+            <!-- disclaimer -->
+            <p>Site is purely for education purpose only. <br> &copy; Alan Mc Gee</p>
+        </div>
+
+    </footer>
+    <!-- bootstrap 4 -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js "></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js "></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js "></script>
 
 </body>
 
