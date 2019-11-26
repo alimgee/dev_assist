@@ -160,3 +160,7 @@ LOGIN_REDIRECT_URL = 'home' # view to go to after logging in
 LOGIN_URL = 'login' # to redirect after registering to built in login view
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# for stripe payments on the site
+STRIPE_PUBLISHABLE = os.getenv('STRIPE_PUBLISHABLE')
+STRIPE_SECRET = os.getenv('STRIPE_SECRET')
