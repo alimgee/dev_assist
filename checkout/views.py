@@ -14,6 +14,8 @@ stripe.api_key = settings.STRIPE_SECRET
 
 
 def checkout(request):
+    user =request.user
+
     if request.method=="POST":
         order_form = OrderForm(request.POST)
         payment_form = MakePaymentForm(request.POST)
@@ -22,6 +24,7 @@ def checkout(request):
             
             order = order_form.save(commit=False)
             order.date = timezone.now()
+            order.user = user
             order.save()
             
             cart = request.session.get('cart', {})
@@ -31,7 +34,7 @@ def checkout(request):
                 total += quantity * donation.price
                 order_line_item = OrderLineItem(
                     order = order, 
-                    donation = product, 
+                    donation = donation, 
                     quantity = quantity
                     )
                 order_line_item.save()
