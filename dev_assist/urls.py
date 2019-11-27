@@ -31,5 +31,7 @@ urlpatterns = [
     path('community/', include('forum.urls')),
     path('cart/', include('cart.urls')),
     path('donate/', donation_view.donations, name='donations'),
+    path('checkout/', include('checkout.urls')),
+    
 
 ]

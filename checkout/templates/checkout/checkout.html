@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+<!--loading in django crispy forms tags-->
+{% block content %}
+<!-- Log in form Content-->
+{% include 'checkout/includes/intro.html' %}
+<div class="container">
+{% for item in cart_items %}
+    <div class="row">
+        <div class="col">
+            <div class="card query-card">
+                <div class="card-body query">
+                    <p><span class="cart-description">Donation type: {{ item.donation}}</span>
+                        <span class="cart-price">price: &euro;{{ item.donation.price}}</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    <div class="row">
+        <div class="col">
+                <p>{{ donation_count }} item(s) at a total cost of: &euro;{{ total }}</p>
+        </div>
+    </div>
+    
+</div>
+
+<hr>
+
+{% endblock %}
