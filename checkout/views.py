@@ -50,14 +50,16 @@ def checkout(request):
                 messages.error(request, "Your card was declined!")
                 
             if customer.paid:
-                messages.error(request, "You have successfully paid")
+                messages.success(request, f'You have successfully paid')
                 request.session['cart'] = {}
                 return redirect(reverse('donations'))
             else:
                 messages.error(request, "Unable to take payment")
+                return redirect(reverse('checkout'))
         else:
             print(payment_form.errors)
             messages.error(request, "We were unable to take a payment with that card!")
+            return redirect(reverse('checkout'))
     else:
         payment_form = MakePaymentForm()
         order_form = OrderForm()
