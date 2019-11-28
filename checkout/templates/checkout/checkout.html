@@ -35,7 +35,8 @@
     <hr>
     <div class="row">
         <div class="col">
-            <p>{{ donation_count }} item(s) at a total cost of: &euro;{{ total }}</p>
+                    
+            <p>{{ donation_count }} item(s) at a <strong>total cost</strong> of: <span class ="cart-price">&euro;{{ total }}</span></p>
         </div>
     </div>
     <div class="row">
@@ -43,8 +44,9 @@
             <form role="form" method="post" id="payment-form" action="{% url 'checkout' %}">
                 <legend>Payment Details</legend>
 
-                <div id="credit-card-errors" style="display: none;">
-                    <div id="alert-message block-message error" id="stripe-error-message"></div>
+                <div id="credit-card-errors" >
+                    <div class="alert-danger block-message error" id="stripe-error-message"></div>
+                    
                 </div>
                 <div class="row">
                     <div class="form-group col-md-6">

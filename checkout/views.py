@@ -55,11 +55,11 @@ def checkout(request):
                 return redirect(reverse('donations'))
             else:
                 messages.error(request, "Unable to take payment")
-                return redirect(reverse('checkout'))
+                
         else:
             print(payment_form.errors)
             messages.error(request, "We were unable to take a payment with that card!")
-            return redirect(reverse('checkout'))
+            
     else:
         payment_form = MakePaymentForm()
         order_form = OrderForm()
