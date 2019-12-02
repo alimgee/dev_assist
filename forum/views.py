@@ -5,6 +5,7 @@ from forum.forms import QueryForm, CommentForm
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.contrib.auth.models import User
+from django.db.models import Q #for multiple searchs
 
     
 def community(request):
@@ -24,6 +25,18 @@ def community(request):
     context = {
         
         "posts": post_pag
+    }
+    return render(request, "forum/forum_list.html", context)
+
+
+def do_search(request):
+    query = request.GET.get('q')
+    posts = Post.objects.filter(Q(title__icontains=query) | Q(content__icontains=query)) 
+    if not posts:
+        messages.warning(request, f'Your serach for "{query} " returned no results')
+    context = {
+        
+        "posts": posts
     }
     return render(request, "forum/forum_list.html", context)
 

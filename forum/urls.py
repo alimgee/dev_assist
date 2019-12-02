@@ -7,5 +7,6 @@ urlpatterns = [
     path('query/new/', views.create_query, name='post-create'),
     path('query/<int:pk>/edit/', views.edit_query, name='post-edit'),
     path('query/<int:pk>/delete/', views.delete_query, name='post-delete'),
+    path('search/', views.do_search, name='search'),
 
 ]
