@@ -72,6 +72,7 @@
                     <a class="nav-item nav-link " href="{% url 'register' %}" title="Register"><i
                             class="fa fa-id-badge fa-2x" aria-hidden="true"></i> Register</a>
                     {% endif %}
+                    <!-- Adding in Search form for community posts -->
                     <div style="margin-top: .75rem;">
                             <form action="{% url 'search' %}" method="get">
                                 <input type="text" name="q" placeholder="Search Community" >
