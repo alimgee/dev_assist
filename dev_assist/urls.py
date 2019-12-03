@@ -18,7 +18,7 @@ from django.urls import path, include
 from account import views as user_views
 from donation import views as donation_view
 from django.contrib.auth import views as auth_views # importing built in loginveiw
-from django.conf.urls import (handler404) # using built in error handler to show 404 page
+from django.conf.urls import (handler404, handler500) # using built in error handler to show 404 and 500 page
 
 
 urlpatterns = [
