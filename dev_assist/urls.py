@@ -32,6 +32,12 @@ urlpatterns = [
     path('cart/', include('cart.urls')),
     path('donate/', donation_view.donations, name='donations'),
     path('checkout/', include('checkout.urls')),
+    # password reset section
+    path('password-reset/',
+         auth_views.PasswordResetView.as_view(
+             template_name='account/password_reset.html'
+         ),
+         name='password_reset'),
     
 
 ]
