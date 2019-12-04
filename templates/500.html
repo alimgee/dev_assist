@@ -1,1 +1,27 @@
-<h1>im 500</h1>
+{% extends "base.html" %}
+
+{% block content %}
+{% include 'main/includes/intro.html' %}
+
+<div class="container mt-2 mb-2">
+    <div class="row">
+        <div class="col-md-8 order-2 order-md-1">
+            <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title error-page-title">Something seems to have gone wrong!!</h5>
+                  
+                  <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos perferendi quaerat?</p>
+                  <a href="#" class="btn btn-info">Go to Community Instead</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 order-1">
+            <div style="margin: auto; text-align: center; padding-top:3rem;">
+                <i class="fa fa-exclamation-circle fa-size" aria-hidden="true"></i>
+              </div>
+            
+          </div>
+      </div>
+      </div>
+
+      {% endblock %}

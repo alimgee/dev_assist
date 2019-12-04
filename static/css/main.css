@@ -141,6 +141,16 @@ body{
 .form-group{
     text-align: left;
 }
+
+/* error pages */
+.error-page-title{
+    font-size: 3rem;
+}
+
+.alert-success{
+    background-color: #a8a9ad!important;
+}
+
 /* footer */
 .footer{
     line-height: 1rem;
