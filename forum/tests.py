@@ -5,7 +5,6 @@ from .models import Post, Comment
 from django.shortcuts import get_object_or_404
 
 
-
 # Tests to check the forum
 class TestForumNotLoggedIn(TestCase):
     # testing loading of forum landing page
@@ -25,19 +24,19 @@ class TestForumNotLoggedIn(TestCase):
         # user not logged in page should redirect
         response = self.client.get('/community/query/new/')
         self.assertEqual(response.status_code, 302)
-    
+
     def test_post_view_one_not_logged(self):
         '''
-        testing that view post detail can be viewed using 
+        testing that view post detail can be viewed using
         the views.query_detail function when a user is not logged in
         '''
-        self.credentials = { 'username': 'testuser', 'password': 'secret'}
+        self.credentials = {'username': 'testuser', 'password': 'secret'}
         User.objects.create_user(**self.credentials)
-        ''' 
-        creating test user (id will be 1), and test post (id also 1) 
+        '''
+        creating test user (id will be 1), and test post (id also 1)
         as a valid post is needed to test detail view
         '''
-        post = Post(title = "post title", content="content here", author_id=1)
+        post = Post(title="post title", content="content here", author_id=1)
         post.save()
         response = self.client.get('/community/query/1/')
         self.assertEqual(response.status_code, 200)
@@ -45,7 +44,7 @@ class TestForumNotLoggedIn(TestCase):
         self.assertTemplateUsed(response, "base.html")
         self.assertTemplateUsed(response, "forum/includes/intro.html")
         self.assertTemplateUsed(response, "forum/includes/modals.html")
-    
+
 
 class TestForumLoggedIn(TestCase):
     # tests for when logged in
@@ -57,7 +56,7 @@ class TestForumLoggedIn(TestCase):
             'password': 'secret'}
         User.objects.create_user(**self.credentials)
         self.client.post('/login/', self.credentials, follow=True)
-    
+
     # test load of add post to forum, requires login
     def test_add_post_to_forum_page_load(self):
         # user logged in page should load
@@ -74,14 +73,14 @@ class TestForumLoggedIn(TestCase):
     # testing add post form accepts valid data
     def test_post_form(self):
         form_data = {'title': 'djangotest',
-        'content': 'this is a post',}
+                     'content': 'this is a post'}
         form = QueryForm(data=form_data)
         self.assertTrue(form.is_valid())
-    
+
     # testing add comment form accepts valid data
     def test_post_form(self):
         form_data = {'title': 'djangotest',
-        'content': 'this is a post',}
+                     'content': 'this is a post'}
         form = CommentForm(data=form_data)
         self.assertTrue(form.is_valid())
 
@@ -94,18 +93,18 @@ class TestForumLoggedIn(TestCase):
         form = QueryForm({"title": ""})
         self.assertFalse(form.is_valid())
         self.assertEqual(form.errors["title"], [u"This field is required."])
-    
+
     def test_correct_error_message_content(self):
         '''
         testing correct error message gets loaded
         when content field is not filled in on add
         post form
         '''
-        form = QueryForm({"title": "title", 'content':""})
+        form = QueryForm({"title": "title", 'content': ""})
         self.assertFalse(form.is_valid())
         self.assertEqual(
             form.errors["content"], [u"This field is required."])
-    
+
     def test_post_view_one(self):
         '''
         testing that when a post is added via form
@@ -113,7 +112,8 @@ class TestForumLoggedIn(TestCase):
         function
         '''
         user = User.objects.get(username='testuser')
-        post = Post(title = "post title", content="content here", author_id=user.id)
+        post = Post(title="post title",
+                    content="content here", author_id=user.id)
         post.save()
         response = self.client.get('/community/query/{}/'.format(post.pk))
         self.assertEqual(response.status_code, 200)
@@ -121,7 +121,6 @@ class TestForumLoggedIn(TestCase):
         self.assertTemplateUsed(response, "base.html")
         self.assertTemplateUsed(response, "forum/includes/intro.html")
         self.assertTemplateUsed(response, "forum/includes/modals.html")
-    
 
     def test_edit_post_page_load(self):
         '''
@@ -130,18 +129,11 @@ class TestForumLoggedIn(TestCase):
         function
         '''
         user = User.objects.get(username='testuser')
-        post = Post(title = "post title", content="content here", author_id=user.id)
+        post = Post(title="post title",
+                    content="content here", author_id=user.id)
         post.save()
         response = self.client.get('/community/query/1/edit/')
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "forum/edit_form.html")
         self.assertTemplateUsed(response, "base.html")
         self.assertTemplateUsed(response, "forum/includes/intro.html")
-        
-
-  
-        
-        
-        
-    
-   
