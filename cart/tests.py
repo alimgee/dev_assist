@@ -24,4 +24,10 @@ class CartTestsLoggedIn(TestCase):
     def test_cart_page_load(self):
         response = self.client.get('/cart/')
         self.assertEqual(response.status_code, 200)
+
+    def test_cart_page_templates_load(self):
+        response = self.client.get('/cart/')
+        self.assertTemplateUsed(response, "cart/cart.html")
+        self.assertTemplateUsed(response, "base.html")
+        self.assertTemplateUsed(response, "cart/includes/intro.html")
     
