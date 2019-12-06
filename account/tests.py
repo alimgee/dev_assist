@@ -17,6 +17,24 @@ class UserTests(TestCase):
     def test_logout_page_load(self):
         response = self.client.get('/logout/')
         self.assertEqual(response.status_code, 200)
+    
+    def test_register_page_templates_load(self):
+        response = self.client.get('/register/')
+        self.assertTemplateUsed(response, "register.html")
+        self.assertTemplateUsed(response, "base.html")
+        self.assertTemplateUsed(response, "account/includes/intro.html")
+
+    def test_login_page_templates_load(self):
+        response = self.client.get('/login/')
+        self.assertTemplateUsed(response, "login.html")
+        self.assertTemplateUsed(response, "base.html")
+        self.assertTemplateUsed(response, "account/includes/intro.html")
+
+    def test_logout_page_templates_load(self):
+        response = self.client.get('/logout/')
+        self.assertTemplateUsed(response, "logout.html")
+        self.assertTemplateUsed(response, "base.html")
+        self.assertTemplateUsed(response, "account/includes/intro.html")
 
     # testing log in function
     def setUp(self):
