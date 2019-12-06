@@ -77,6 +77,13 @@ class TestForumLoggedIn(TestCase):
         'content': 'this is a post',}
         form = QueryForm(data=form_data)
         self.assertTrue(form.is_valid())
+    
+    # testing add comment form accepts valid data
+    def test_post_form(self):
+        form_data = {'title': 'djangotest',
+        'content': 'this is a post',}
+        form = CommentForm(data=form_data)
+        self.assertTrue(form.is_valid())
 
     def test_correct_error_message_title(self):
         '''
