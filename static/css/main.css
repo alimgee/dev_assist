@@ -161,3 +161,16 @@ body{
     color: #fafafa;
 
 }
+.footer-link{
+    text-decoration: none;
+    color: #fafafa;
+}
+.footer-link:hover{
+    color: #757575;
+    text-decoration: none;
+}
+.footer-item{
+    list-style-type:none;
+    text-indent: -2rem;
+    line-height: 1.5rem;
+}

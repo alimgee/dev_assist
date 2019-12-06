@@ -39,7 +39,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav ml-auto ">
-                    
+
                     {% if user.is_authenticated %}
                     <a class="nav-item nav-link " href="{% url 'view-cart' %}" title="Cart"><i
                             class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i>
@@ -74,11 +74,11 @@
                     {% endif %}
                     <!-- Adding in Search form for community posts -->
                     <div style="margin-top: .75rem;">
-                            <form action="{% url 'search' %}" method="get">
-                                <input type="text" name="q" placeholder="Search Community" >
-                                <button type="search"><i class="fa fa-search" aria-hidden="true"></i></button>
-                            </form>
-                        </div>
+                        <form action="{% url 'search' %}" method="get">
+                            <input type="text" name="q" placeholder="Search Community">
+                            <button type="search"><i class="fa fa-search" aria-hidden="true"></i></button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -117,6 +117,43 @@
 
     <footer>
         <div class="footer">
+            <div class="row">
+                <div class="col-sm-6 mb-2">
+                    <div class="footer-title text-center text-dark font-weight-bold">Accounts
+                        <div class="mt-2 text-light font-weight-normal">
+                            <ul class="footer-item">
+                                <li><a href="#" class="footer-link">I would like to log on</a></li>
+                                <li><a href="#" class="footer-link">I'm new, I would like to Register</a></li>
+                                <li><a href="#" class="footer-link">I need to reset my password</a></li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 ">
+                    <div class="footer-title text-center text-dark font-weight-bold">Services
+                        <div class="text-light mt-2 font-weight-normal">
+                            <ul class="footer-item">
+                                <li><a href="#" class="footer-link">I want to view the Community</a></li>
+                                <li><a href="#" class="footer-link">I would like to add a Query</a></li>
+                                <li><a href="#" class="footer-link">I want to make a donation to your site</a></li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-4 mt-2">
+                <div class="col text-center">
+                    <span><a class="" href="#fakefacebook"><i class="fa fa-facebook-official fa-2x mr-2"
+                                aria-hidden="true"></i>
+                        </a></span>
+                    <span><a class="" href="#faketwitter"><i class="fa fa-twitter fa-2x mr-2" aria-hidden="true"></i>
+                        </a></span>
+                    <span><a class="" href="#fakeinstagram"><i class="fa fa-instagram fa-2x" aria-hidden="true"></i>
+                        </a></span>
+                </div>
+            </div>
             <!-- disclaimer -->
             <p>Site is purely for education purpose only. <br> &copy; Alan Mc Gee</p>
         </div>
