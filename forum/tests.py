@@ -26,6 +26,26 @@ class TestForumNotLoggedIn(TestCase):
         response = self.client.get('/community/query/new/')
         self.assertEqual(response.status_code, 302)
     
+    def test_post_view_one_not_logged(self):
+        '''
+        testing that view post detail can be viewed using 
+        the views.query_detail function when a user is not logged in
+        '''
+        self.credentials = { 'username': 'testuser', 'password': 'secret'}
+        User.objects.create_user(**self.credentials)
+        ''' 
+        creating test user (id will be 1), and test post (id also 1) 
+        as a valid post is needed to test detail view
+        '''
+        post = Post(title = "post title", content="content here", author_id=1)
+        post.save()
+        response = self.client.get('/community/query/1/')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "forum/post_detail.html")
+        self.assertTemplateUsed(response, "base.html")
+        self.assertTemplateUsed(response, "forum/includes/intro.html")
+        self.assertTemplateUsed(response, "forum/includes/modals.html")
+    
 
 class TestForumLoggedIn(TestCase):
     # tests for when logged in
