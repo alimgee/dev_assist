@@ -1,7 +1,8 @@
 from django.test import TestCase
 from django.contrib.auth.models import User
-from forum.forms import QueryForm
-from .models import Post
+from forum.forms import QueryForm, CommentForm
+from .models import Post, Comment
+from django.shortcuts import get_object_or_404
 
 
 
@@ -89,6 +90,29 @@ class TestForumLoggedIn(TestCase):
         post.save()
         response = self.client.get('/community/query/{}/'.format(post.pk))
         self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "forum/post_detail.html")
+        self.assertTemplateUsed(response, "base.html")
+        self.assertTemplateUsed(response, "forum/includes/intro.html")
+        self.assertTemplateUsed(response, "forum/includes/modals.html")
+    
+
+    def test_edit_post_page_load(self):
+        '''
+        testing that when a post is added via form
+        it can be edited and loaded using the views.edit_query
+        function
+        '''
+        user = User.objects.get(username='testuser')
+        post = Post(title = "post title", content="content here", author_id=user.id)
+        post.save()
+        response = self.client.get('/community/query/1/edit/')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "forum/edit_form.html")
+        self.assertTemplateUsed(response, "base.html")
+        self.assertTemplateUsed(response, "forum/includes/intro.html")
+        
+
+  
         
         
         
