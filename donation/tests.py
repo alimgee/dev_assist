@@ -1,6 +1,7 @@
 from django.test import TestCase
 
-class UserTests(TestCase):  
+
+class UserTests(TestCase):
 
     # testing load of donate page
     def test_donate_page_load(self):
