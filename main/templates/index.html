@@ -7,10 +7,10 @@
         <div class="col-md-8 order-2 order-md-1">
             <div class="card">
                 <div class="card-body">
-                  <h5 class="card-title">Community</h5>
-                  <h6 class="card-subtitle mb-2 text-muted">Box subtitle</h6>
-                  <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos perferendi quaerat?</p>
-                  <a href="#" class="btn btn-info">Community sounds good!</a>
+                  <h2 class="card-title">Community</h5>
+                  <h3 class="card-subtitle mb-2 text-muted">working together</h6>
+                  <p class="card-text">Whatever your issue, whatever your language, post it on DevAssist. Let the whole dev community help you!</p>
+                  <a href="{% url 'posts' %}" class="btn btn-info">Community sounds good!</a>
                 </div>
             </div>
         </div>
@@ -25,16 +25,17 @@
 
     <div class="col-md-4">
         <div style="margin: auto; text-align: center; padding-top:3rem;">
-            <i class="fa fa-shopping-bag fa-size" aria-hidden="true"></i>
+            <i class="fa fa-thumbs-o-up fa-size" aria-hidden="true"></i>
           </div>
       </div>
       <div class="col-md-8">
           <div class="card">
               <div class="card-body">
-                <h5 class="card-title">Our Products</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Box subtitle</h6>
-                <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos perferendi quaerat?</p>
-                <a href="#" class="btn btn-info">Let me see your Proudcts!</a>
+                <h2 class="card-title">Donate to us</h5>
+                <h3 class="card-subtitle mb-2 text-muted">every little helps</h6>
+                <p class="card-text">We try to keep DevAssit costs as low as possible but we need funding to keep us going. 
+                    We also plan to have our own devloper led team to assist our growing community</p>
+                <a href="{% url 'donations'%}" class="btn btn-info">I like it! I would love to help!</a>
               </div>
           </div>
       </div>
@@ -43,10 +44,10 @@
       <div class="col-md-8 order-2 order-md-1">
           <div class="card">
               <div class="card-body">
-                <h5 class="card-title">About</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Box subtitle</h6>
-                <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos perferendi quaerat?</p>
-                <a href="#" class="btn btn-info">I want to know more about you!</a>
+                <h2 class="card-title">About us</h5>
+                <h3 class="card-subtitle mb-2 text-muted">who we are</h6>
+                <p class="card-text">This site was my idea for my final project, covering Python and Django, as part of my Fullstack Developer Course </p>
+                <a href="{% url 'about' %}" class="btn btn-info">I want to know more about you!</a>
               </div>
           </div>
       </div>
