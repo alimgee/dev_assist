@@ -47,27 +47,27 @@
                         {% if donation_count > 0 %}
                         <label class="badge badge-warning">{{ donation_count }}</label>
                         {% endif %}
-                        <div class="d-inline d-none d-sm-block d-md-none"> Cart</div>
+                        <div class="d-inline d-none d-sm-block d-lg-none"> Cart</div>
                     </a>
                     <a class="nav-item nav-link " href="{% url 'donations' %}" title="donate"><i
                             class="fa fa-money fa-2x" aria-hidden="true"></i>
-                        <div class="d-inline d-none d-sm-block d-md-none"> Donations</div>
+                        <div class="d-inline d-none d-sm-block d-lg-none"> Donations</div>
                     </a>
                     <a class="nav-item nav-link " href="{% url 'home' %}" title="Home"><i class="fa fa-home fa-2x"
                             aria-hidden="true"></i>
-                        <div class="d-inline d-none d-sm-block d-md-none"> Home</div>
+                        <div class="d-inline d-none d-sm-block d-lg-none"> Home</div>
                     </a>
                     <a class="nav-item nav-link " href="{% url 'about' %}" title="About"><i class="fa fa-info fa-2x"
                             aria-hidden="true"></i>
-                        <div class="d-inline d-none d-sm-block d-md-none ml-3"> About</div>
+                        <div class="d-inline d-none d-sm-block d-lg-none ml-3"> About</div>
                     </a>
                     <a class="nav-item nav-link " href="{% url 'posts' %}" title="Community"><i
                             class="fa fa-comments-o fa-2x" aria-hidden="true"></i>
-                        <div class="d-inline d-none d-sm-block d-md-none"> Community</div>
+                        <div class="d-inline d-none d-sm-block d-lg-none"> Community</div>
                     </a>
                     <a class="nav-item nav-link " href="{% url 'logout' %}" title="Log Out"><i
                             class="fa fa-sign-out fa-2x" aria-hidden="true"></i>
-                        <div class="d-inline d-none d-sm-block d-md-none"> Log out</div>
+                        <div class="d-inline d-none d-sm-block d-lg-none"> Log out</div>
                     </a>
                     {% else %}
                     <a class="nav-item nav-link " href="{% url 'donations' %}" title="donate"><i
@@ -140,24 +140,33 @@
         <div class="footer">
             <div class="row">
                 <div class="col-sm-6 mb-2">
-                    <div class="footer-title text-center text-dark font-weight-bold">Accounts
+                    <div class="footer-title text-center text-dark font-weight-bold">Accounts Quick Links
                         <div class="mt-2 text-light font-weight-normal">
                             <ul class="footer-item">
-                                <li><a href="#" class="footer-link">I would like to log on</a></li>
-                                <li><a href="#" class="footer-link">I'm new, I would like to Register</a></li>
-                                <li><a href="#" class="footer-link">I need to reset my password</a></li>
+                                {% if user.is_authenticated %}
+                                <li><a href="{% url 'logout'%}" class="footer-link">I would like to log out</a></li>
+                                <li><a href="{% url 'password_reset'%}" class="footer-link">I need to reset my password</a></li>
+                                {% else %}
+                                <li><a href="{% url 'login'%}" class="footer-link">I would like to log on</a></li>
+                                <li><a href="{% url 'register'%}" class="footer-link">I'm new, I would like to Register</a></li>
+                                <li><a href="{% url 'password_reset'%}" class="footer-link">I need to reset my password</a></li>
+                                {% endif %}
                             </ul>
 
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-6 ">
-                    <div class="footer-title text-center text-dark font-weight-bold">Services
+                    <div class="footer-title text-center text-dark font-weight-bold">Services Quick Links
                         <div class="text-light mt-2 font-weight-normal">
                             <ul class="footer-item">
-                                <li><a href="#" class="footer-link">I want to view the Community</a></li>
-                                <li><a href="#" class="footer-link">I would like to add a Query</a></li>
-                                <li><a href="#" class="footer-link">I want to make a donation to your site</a></li>
+                                <li><a href="{% url 'posts'%}" class="footer-link">I want to view the Community</a></li>
+                                <li><a href="{% url 'post-create'%}" class="footer-link">I would like to add a community Query</a></li>
+                                <li><a href="{% url 'donations'%}" class="footer-link">I want to make a donation to your site</a></li>
+                                {% if user.is_authenticated %}
+                                <li><a href="{% url 'view-cart'%}" class="footer-link">Show me whats in my cart</a></li>
+                                <li><a href="{% url 'checkout'%}" class="footer-link">Bring me to the checkout</a></li>
+                                {% endif %}
                             </ul>
 
                         </div>
