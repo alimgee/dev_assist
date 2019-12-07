@@ -43,11 +43,11 @@
                     <!-- only logged in users see these links-->
                     {% if user.is_authenticated %}
                     {% if donation_count > 0 %}
-                        <label class="badge badge-warning">{{ donation_count }}</label>
-                        {% endif %}
+                    <label class="badge badge-warning">{{ donation_count }}</label>
+                    {% endif %}
                     <a class="nav-item nav-link " href="{% url 'view-cart' %}" title="Cart">
-                        <i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i>                      
-                        
+                        <i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i>
+
                         <!-- only showing nav names on mobiles and tabs, hiding for larger devices for better viewing-->
                         <div class="d-inline d-none d-sm-block d-lg-none"> Cart</div>
                     </a>
@@ -201,6 +201,13 @@
             </div>
             <!-- disclaimer -->
             <p>Site is purely for education purpose only. <br> &copy; Alan Mc Gee</p>
+            <!-- css validator badge -->
+            <p><a href="http://jigsaw.w3.org/css-validator/check/referer">
+                    <img style="border:0; height:1.5rem" src="http://jigsaw.w3.org/css-validator/images/vcss-blue"
+                        alt="Valid CSS!" />
+                </a>
+            </p>
+
         </div>
 
     </footer>
