@@ -42,15 +42,16 @@
                 <div class="navbar-nav ml-auto ">
                     <!-- only logged in users see these links-->
                     {% if user.is_authenticated %}
-                    {% if donation_count > 0 %}
-                    <label class="badge badge-warning">{{ donation_count }}</label>
-                    {% endif %}
+                    
                     <a class="nav-item nav-link " href="{% url 'view-cart' %}" title="Cart">
                         <i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i>
 
                         <!-- only showing nav names on mobiles and tabs, hiding for larger devices for better viewing-->
-                        <div class="d-inline d-none d-sm-block d-lg-none"> Cart</div>
+                        <div class="d-inline d-none d-sm-block d-lg-none"> Cart</div>{% if donation_count > 0 %}
+                        <span class="badge badge-warning d-inline">{{ donation_count }}</span>
+                        {% endif %}
                     </a>
+                    
                     <a class="nav-item nav-link " href="{% url 'donations' %}" title="donate"><i
                             class="fa fa-thumbs-o-up fa-2x" aria-hidden="true"></i>
                         <!-- only showing nav names on mobiles and tabs, hiding for larger devices for better viewing-->
