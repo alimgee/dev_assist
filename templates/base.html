@@ -47,30 +47,51 @@
                         {% if donation_count > 0 %}
                         <label class="badge badge-warning">{{ donation_count }}</label>
                         {% endif %}
+                        <div class="d-inline d-none d-sm-block d-md-none"> Cart</div>
                     </a>
                     <a class="nav-item nav-link " href="{% url 'donations' %}" title="donate"><i
-                            class="fa fa-money fa-2x" aria-hidden="true"></i> </a>
+                            class="fa fa-money fa-2x" aria-hidden="true"></i>
+                        <div class="d-inline d-none d-sm-block d-md-none"> Donations</div>
+                    </a>
                     <a class="nav-item nav-link " href="{% url 'home' %}" title="Home"><i class="fa fa-home fa-2x"
-                            aria-hidden="true"></i> </a>
+                            aria-hidden="true"></i>
+                        <div class="d-inline d-none d-sm-block d-md-none"> Home</div>
+                    </a>
                     <a class="nav-item nav-link " href="{% url 'about' %}" title="About"><i class="fa fa-info fa-2x"
-                            aria-hidden="true"></i> </a>
+                            aria-hidden="true"></i>
+                        <div class="d-inline d-none d-sm-block d-md-none ml-3"> About</div>
+                    </a>
                     <a class="nav-item nav-link " href="{% url 'posts' %}" title="Community"><i
-                            class="fa fa-comments-o fa-2x" aria-hidden="true"></i> </a>
+                            class="fa fa-comments-o fa-2x" aria-hidden="true"></i>
+                        <div class="d-inline d-none d-sm-block d-md-none"> Community</div>
+                    </a>
                     <a class="nav-item nav-link " href="{% url 'logout' %}" title="Log Out"><i
-                            class="fa fa-sign-out fa-2x" aria-hidden="true"></i>Logout</a>
+                            class="fa fa-sign-out fa-2x" aria-hidden="true"></i>
+                        <div class="d-inline d-none d-sm-block d-md-none"> Log out</div>
+                    </a>
                     {% else %}
                     <a class="nav-item nav-link " href="{% url 'donations' %}" title="donate"><i
-                            class="fa fa-money fa-2x" aria-hidden="true"></i> </a>
+                            class="fa fa-money fa-2x" aria-hidden="true"></i>
+                        <div class="d-inline d-none d-sm-block d-md-none"> Donations</div>
+                    </a>
                     <a class="nav-item nav-link " href="{% url 'home' %}" title="Home"><i class="fa fa-home fa-2x"
-                            aria-hidden="true"></i> </a>
+                            aria-hidden="true"></i>
+                        <div class="d-inline d-none d-sm-block d-md-none"> Home</div>
+                    </a>
                     <a class="nav-item nav-link " href="{% url 'about' %}" title="About"><i class="fa fa-info fa-2x"
-                            aria-hidden="true"></i> </a>
+                            aria-hidden="true"></i>
+                        <div class="d-inline d-none d-sm-block d-md-none"> About</div>
+                    </a>
                     <a class="nav-item nav-link " href="{% url 'posts' %}" title="Community"><i
                             class="fa fa-comments-o fa-2x" aria-hidden="true"></i> </a>
                     <a class="nav-item nav-link " href="{% url 'login' %}" title="Log In"><i class="fa fa-sign-in fa-2x"
-                            aria-hidden="true"></i> Log In </a>
+                            aria-hidden="true"></i>
+                        <div class="d-inline d-none d-sm-block d-md-none"> Log in</div>
+                    </a>
                     <a class="nav-item nav-link " href="{% url 'register' %}" title="Register"><i
-                            class="fa fa-id-badge fa-2x" aria-hidden="true"></i> Register</a>
+                            class="fa fa-id-badge fa-2x" aria-hidden="true"></i>
+                        <div class="d-inline d-none d-sm-block d-md-none"> Register</div>
+                    </a>
                     {% endif %}
                     <!-- Adding in Search form for community posts -->
                     <div style="margin-top: .75rem;">
