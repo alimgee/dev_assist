@@ -148,7 +148,12 @@ body{
 }
 
 .alert-success{
-    background-color: #a8a9ad!important;
+    background-color: #fafafa!important;
+    border-color: #757575;
+}
+.alert-warning{
+    background-color: #fafafa!important;
+    border-color: #757575;
 }
 
 /* footer */
@@ -173,4 +178,11 @@ body{
     list-style-type:none;
     text-indent: -2rem;
     line-height: 1.5rem;
+}
+.text-dark{
+    color:#757575!important;
+    font-size: 1.25rem;
+}
+.text-light{
+    font-size: 1rem;
 }
