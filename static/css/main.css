@@ -192,3 +192,18 @@ body{
 .text-light{
     font-size: 1rem;
 }
+
+.searchbar{
+    background: transparent;
+    border-radius: .5rem;
+    color: #fafafa; 
+    
+}
+.searchbutton{   
+    border-radius: .5rem;
+    font-weight: bold;
+    background: transparent;      
+}
+.fa-search{
+    color: #757575;
+}

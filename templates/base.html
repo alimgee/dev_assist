@@ -100,8 +100,8 @@
                     <!-- Adding in Search form for community posts -->
                     <div style="margin-top: .75rem;">
                         <form action="{% url 'search' %}" method="get">
-                            <input type="text" name="q" placeholder="Search Community">
-                            <input type="submit"><i class="fa fa-search" aria-hidden="true"></i>
+                            <input class="searchbar small" type="text" name="q" placeholder="Search Community">
+                            <button class="searchbutton" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
                         </form>
                     </div>
                 </div>
