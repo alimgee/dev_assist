@@ -3,11 +3,12 @@
 {% load crispy_forms_tags %}
 <!--loading in django crispy forms tags-->
 
+<!-- calling stripe assets to allow stripe payment functionality -->
 {% block head_js %}
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 <script type="text/javascript">
     //<![CDATA[
-        Stripe.publishableKey = '{{ publishable }}';
+    Stripe.publishableKey = '{{ publishable }}';
     //]]>
 </script>
 <script type="text/javascript" src="{% static 'js/stripe.js' %}"></script>
@@ -16,9 +17,10 @@
 
 
 {% block content %}
-<!-- Log in form Content-->
+<!-- Checkout details Content-->
 {% include 'checkout/includes/intro.html' %}
 <div class="container">
+    <!-- looping through cart -->
     {% for item in cart_items %}
     <div class="row mb-2">
         <div class="col">
@@ -35,18 +37,20 @@
     <hr>
     <div class="row">
         <div class="col">
-                    
-            <p>{{ donation_count }} item(s) at a <strong>total cost</strong> of: <span class ="cart-price">&euro;{{ total }}</span></p>
+            <!-- checkout total of donation -->
+            <p>{{ donation_count }} item(s) at a <strong>total cost</strong> of: <span
+                    class="cart-price">&euro;{{ total }}</span></p>
         </div>
     </div>
+    <!-- collection user details for payment-->
     <div class="row">
         <div class="col">
             <form role="form" method="post" id="payment-form" action="{% url 'checkout' %}">
                 <legend>Payment Details</legend>
 
-                <div id="credit-card-errors" >
+                <div id="credit-card-errors">
                     <div class="alert-danger block-message error" id="stripe-error-message"></div>
-                    
+
                 </div>
                 <div class="row">
                     <div class="form-group col-md-6">
