@@ -2,7 +2,7 @@
 
 {% block content %}
 {% include 'main/includes/intro.html' %}
-
+<!--page for 404 error -->
 <div class="container mt-2 mb-2">
     <div class="row">
         <div class="col-md-8 order-2 order-md-1">
@@ -10,8 +10,8 @@
                 <div class="card-body">
                   <p class="card-title error-page-title">404!!!</p>
                   
-                  <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos perferendi quaerat?</p>
-                  <a href="#" class="btn btn-info">Go to Community Instead</a>
+                  <p class="card-text">Oooppps the page your looking for does not exist</p>
+                  <a href="{% url 'posts'%}" class="btn btn-info">Go to Community Instead</a>
                 </div>
             </div>
         </div>
