@@ -2,14 +2,14 @@
 
 {% block content %}
 {% include 'forum/includes/intro.html' %}
+<!-- section for user to click throught to add a query to the community -->
 <div class="container mt-2 mb-2">
   <div class="row">
     <div class="col-md-8 order-2 order-md-1">
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Community</h5>
-          <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos perferendi
-            quaerat?</p>
+          <p class="card-text">Got something you would like to discuss or do you need the advice of our community?</p>
           <a href="{% url 'post-create' %}" class="btn btn-info">I need the communitys help!</a>
         </div>
       </div>
@@ -22,42 +22,51 @@
     </div>
   </div>
 </div>
+<!-- looping through all current posts in the db and displaying -->
 <div class="container mt-2 mb-2">
   {% for post in posts %}
   <div class="row mb-3">
     <div class="col">
       <div class="card query-card">
         <div class="card-body query">
-          
-          <p class="card-subtitle mb-2 text-muted small"><i class="fa fa-comment" aria-hidden="true"></i>  {{ post.date_posted|date:"F d, Y" }}</p>
+
+          <p class="card-subtitle mb-2 text-muted small"><i class="fa fa-comment" aria-hidden="true"></i>
+            {{ post.date_posted|date:"F d, Y" }}</p>
           <h4><a class="article-title" href="{% url 'post-detail' post.pk %}">{{ post.title }}</a></h4>
-          <small>Posted by {{ post.author}}  <i class="fa fa-user" aria-hidden="true"></i>
+          <small>Posted by {{ post.author}} <i class="fa fa-user" aria-hidden="true"></i>
           </small>
         </div>
       </div>
     </div>
   </div>
-  
+
 
   {% endfor %}
-
+  <!-- Pagination section -->
   {% if posts.has_other_pages %}
   <ul class="pagination">
+    <!-- if there are previous pages show the previous link-->
     {% if posts.has_previous %}
     <li class="page-item"><a class="page-link" href="?page={{ posts.previous_page_number }}">&laquo;</a></li>
     {% else %}
+    <!-- disable previous link if there are no previous pages -->
     <li class="disabled page-item"><span class="page-link">&laquo;</span></li>
     {% endif %}
+    <!-- looping through the range of pages-->
     {% for i in posts.paginator.page_range %}
+
+    <!-- showing current active page -->
     {% if posts.number == i %}
     <li class="active page-item"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
     {% else %}
     <li><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
     {% endif %}
     {% endfor %}
+    <!-- if there are more pages show the next link-->
     {% if posts.has_next %}
     <li class="page-item"><a class="page-link" href="?page={{ posts.next_page_number }}">&raquo;</a></li>
     {% else %}
+    <!-- disable next link if there are no more pages-->
     <li class="disabled page-item"><span class="page-link">&raquo;</span></li>
     {% endif %}
   </ul>
