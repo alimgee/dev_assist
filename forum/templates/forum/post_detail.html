@@ -2,26 +2,32 @@
 {% load crispy_forms_tags %}
 {% block content %}
 {% include 'forum/includes/intro.html' %}
+<!-- Content for post details-->
 <div class="container">
   <div class="col mb-2">
     <div class="card query-card">
       <div class="card-body query">
+        <!-- only show delete and edit buttons if user is logged in -->
         {% if user.is_authenticated %}
-        <p class="card-subtitle mb-2 text-muted small"><span class="delete-post"><a href="#deleteModal"  data-toggle="modal" title="Delete Query"><i
-                class="fa fa-times fa-3x" aria-hidden="true"></i></a><small>Delete Post</small></span>
+        <p class="card-subtitle mb-2 text-muted small"><span class="delete-post"><a href="#deleteModal"
+              data-toggle="modal" title="Delete Query"><i class="fa fa-times fa-3x "
+                aria-hidden="true"></i></a><small>Delete Post</small></span>
           <span class="edit-post"><a href="{% url 'post-edit' post.id%}" title="Edit Post"><i class="fa fa-pencil fa-3x"
                 aria-hidden="true"></i>
             </a><small>Edit Post</small></span>
         </p>
         {% endif %}
+        <!-- show post details -->
         <h4><a class="article-title" href="{% url 'post-detail' post.pk %}">{{ post.title }}</a></h4>
         <p>{{ post.content }}</p>
         <small><i class="fa fa-comment" aria-hidden="true"></i>
           {{ post.date_posted|date:"F d, Y" }} by {{ post.author}} <i class="fa fa-user" aria-hidden="true"></i>
         </small>
+        <!-- if user is authenicated allow them to add a comment to the post -->
         {% if user.is_authenticated %}
         <div class="row mt-2">
-          <div class="col"><a class="comment-link" href="#comment-form" title="Add Comment" data-toggle="collapse" ><i
+          <!-- add comment button to display form on click -->
+          <div class="col"><a class="comment-link" href="#comment-form" title="Add Comment" data-toggle="collapse"><i
                 class="fa fa-comments fa-3x" aria-hidden="true"></i></a><small>Add comment</small></div>
         </div>
         {% endif %}
@@ -30,24 +36,22 @@
   </div>
 </div>
 <div class="container">
- <!--comment form -->
- <div class="row comment-form mt-2 mb-2 collapse" id="comment-form" >
-   <div class="col">
-
-    <form method="POST">
+  <!--comment form -->
+  <div class="row comment-form mt-2 mb-2 collapse" id="comment-form">
+    <div class="col">
+      <form method="POST">
         {% csrf_token %}
         <fieldset class="form-group">
-            
-            {{ form|crispy }}
-            
+          {{ form|crispy }}
         </fieldset>
         <div class="form-group">
-            <button class="btn btn-info" type="submit">Submit comment</button>
+          <button class="btn btn-info" type="submit">Submit comment</button>
         </div>
-    </form>
+      </form>
     </div>
 
-</div>
+  </div>
+  <!-- loop through existing comments on the post and displaying to the user -->
   {% for comment in comments %}
   <div class="row">
     <div class="col mb-2">
@@ -57,7 +61,7 @@
           <p class="card-subtitle mb-2 text-muted small"><span class="delete-post"><a href="#" title="Delete Query"><i
                   class="fa fa-times fa-3x" aria-hidden="true"></i></a></span> </p>
           {% endif %}
-          <small> Original post:  {{comment.query}}</small>
+          <small> Original post: {{comment.query}}</small>
           <p>{{ comment.content  }}</p>
           <small>Comment by {{ comment.comment_by }} <i class="fa fa-user" aria-hidden="true"></i> <br><i
               class="fa fa-comments-o" aria-hidden="true"></i>
@@ -69,5 +73,6 @@
   </div>
   {% endfor %}
 </div>
+
 {% include 'forum/includes/modals.html'%}
 {% endblock content %}
