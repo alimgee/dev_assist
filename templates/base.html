@@ -44,7 +44,7 @@
                     {% if user.is_authenticated %}
                     
                     <a class="nav-item nav-link " href="{% url 'view-cart' %}" title="Cart">
-                        <i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i>
+                        <i class="fa fa-shopping-cart fa-2x fa-fw" aria-hidden="true"></i>
 
                         <!-- only showing nav names on mobiles and tabs, hiding for larger devices for better viewing-->
                         <div class="d-inline d-none d-sm-block d-lg-none"> Cart</div>{% if donation_count > 0 %}
@@ -53,47 +53,50 @@
                     </a>
                     
                     <a class="nav-item nav-link " href="{% url 'donations' %}" title="donate"><i
-                            class="fa fa-thumbs-o-up fa-2x" aria-hidden="true"></i>
+                            class="fa fa-thumbs-o-up fa-2x fa-fw" aria-hidden="true"></i>
                         <!-- only showing nav names on mobiles and tabs, hiding for larger devices for better viewing-->
                         <div class="d-inline d-none d-sm-block d-lg-none"> Donations</div>
                     </a>
-                    <a class="nav-item nav-link " href="{% url 'home' %}" title="Home"><i class="fa fa-home fa-2x"
+                    <a class="nav-item nav-link " href="{% url 'home' %}" title="Home"><i class="fa fa-home fa-2x fa-fw"
                             aria-hidden="true"></i>
                         <div class="d-inline d-none d-sm-block d-lg-none"> Home</div>
                     </a>
-                    <a class="nav-item nav-link " href="{% url 'about' %}" title="About"><i class="fa fa-info fa-2x"
+                    <a class="nav-item nav-link " href="{% url 'about' %}" title="About"><i class="fa fa-info fa-2x fa-fw"
                             aria-hidden="true"></i>
-                        <div class="d-inline d-none d-sm-block d-lg-none ml-3"> About</div>
+                        <div class="d-inline d-none d-sm-block d-lg-none"> About</div>
                     </a>
                     <a class="nav-item nav-link " href="{% url 'posts' %}" title="Community"><i
-                            class="fa fa-comments-o fa-2x" aria-hidden="true"></i>
+                            class="fa fa-comments-o fa-2x fa-fw" aria-hidden="true"></i>
                         <div class="d-inline d-none d-sm-block d-lg-none"> Community</div>
                     </a>
                     <a class="nav-item nav-link " href="{% url 'logout' %}" title="Log Out"><i
-                            class="fa fa-sign-out fa-2x" aria-hidden="true"></i>
+                            class="fa fa-sign-out fa-2x fa-fw" aria-hidden="true"></i>
                         <div class="d-inline d-none d-sm-block d-lg-none"> Log out</div>
                     </a>
                     {% else %}
                     <a class="nav-item nav-link " href="{% url 'donations' %}" title="donate"><i
-                            class="fa fa-money fa-2x" aria-hidden="true"></i>
+                            class="fa fa-money fa-2x fa-fw" aria-hidden="true"></i>
                         <div class="d-inline d-none d-sm-block d-md-none"> Donations</div>
                     </a>
-                    <a class="nav-item nav-link " href="{% url 'home' %}" title="Home"><i class="fa fa-home fa-2x"
+                    <a class="nav-item nav-link " href="{% url 'home' %}" title="Home"><i class="fa fa-home fa-2x fa-fw"
                             aria-hidden="true"></i>
                         <div class="d-inline d-none d-sm-block d-md-none"> Home</div>
                     </a>
-                    <a class="nav-item nav-link " href="{% url 'about' %}" title="About"><i class="fa fa-info fa-2x"
+                    <a class="nav-item nav-link " href="{% url 'about' %}" title="About"><i class="fa fa-info fa-2x fa-fw"
                             aria-hidden="true"></i>
-                        <div class="d-inline d-none d-sm-block d-md-none"> About</div>
+                        <div class="d-inline d-none d-sm-block d-md-none"> About</div><div class="d-inline d-none d-sm-block d-md-none"> About</div>
                     </a>
                     <a class="nav-item nav-link " href="{% url 'posts' %}" title="Community"><i
-                            class="fa fa-comments-o fa-2x" aria-hidden="true"></i> </a>
-                    <a class="nav-item nav-link " href="{% url 'login' %}" title="Log In"><i class="fa fa-sign-in fa-2x"
+                            class="fa fa-comments-o fa-2x fa-fw" aria-hidden="true"></i>
+                            <div class="d-inline d-none d-sm-block d-md-none"> Community</div> 
+                        </a>
+                            
+                    <a class="nav-item nav-link " href="{% url 'login' %}" title="Log In"><i class="fa fa-sign-in fa-2x fa-fw"
                             aria-hidden="true"></i>
                         <div class="d-inline d-none d-sm-block d-md-none"> Log in</div>
                     </a>
                     <a class="nav-item nav-link " href="{% url 'register' %}" title="Register"><i
-                            class="fa fa-id-badge fa-2x" aria-hidden="true"></i>
+                            class="fa fa-id-badge fa-2x fa-fw" aria-hidden="true"></i>
                         <div class="d-inline d-none d-sm-block d-md-none"> Register</div>
                     </a>
                     {% endif %}
