@@ -3,6 +3,7 @@
 
 {% block content %}
 {% include 'forum/includes/intro.html' %}
+<!-- form to allow a post to be edited by the post owner -->
 <div class="container">
     <div class="row">
         <div class="col-md-8 order-2 order-md-1">
@@ -11,7 +12,7 @@
                     <form method="POST">
                         {% csrf_token %}
                         <fieldset class="form-group">
-                            
+
                             {{ form|crispy }}
 
                         </fieldset>
