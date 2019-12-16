@@ -2,8 +2,9 @@
 
 {% block content %}
 {% include 'donation/includes/intro.html' %}
-
+<!-- content for donation page-->
 <div class="container mt-2 mb-2">
+    <!-- looping through donation products and displaying-->
     {% for item in donations %}
     <div class="row mb-2">
         <div class="col">
@@ -14,7 +15,8 @@
                     <p><span class="donate-description">{{ item.description}}</span>
                         <span class="donate-price">&euro;{{ item.price }}</span>
                         <span class="donate-cart"><a href="{% url 'add-to-cart' item.id %}">
-                            <i class="fa fa-cart-plus fa-2x " aria-hidden="true"></i></a> <small>Add to
+                                <!-- icon link to add item to cart -->
+                                <i class="fa fa-cart-plus fa-2x " aria-hidden="true"></i></a> <small>Add to
                                 Cart</small>
                         </span>
                     </p>
