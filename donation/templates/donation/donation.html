@@ -16,8 +16,12 @@
                         <span class="donate-price">&euro;{{ item.price }}</span>
                         <span class="donate-cart"><a href="{% url 'add-to-cart' item.id %}">
                                 <!-- icon link to add item to cart -->
-                                <i class="fa fa-cart-plus fa-2x " aria-hidden="true"></i></a> <small>Add to
-                                Cart</small>
+                                <i class="fa fa-cart-plus fa-2x " aria-hidden="true"></i></a>
+                            {% if user.is_authenticated %}
+                            <small>Add to Cart</small>
+                            {% else %}
+                            <small>Add to Cart ( You must be logged In)</small>
+                            {% endif %}
                         </span>
                     </p>
                 </div>
