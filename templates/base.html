@@ -24,9 +24,10 @@
     {% if title %}
     <title>DevAssist - {{ title }}</title>
     {% else %}
-    <title>DevAssist</title>
+    <title>DevAssist 
+    </title>
     {% endif %}
-
+    
 </head>
 
 <body>
@@ -75,16 +76,17 @@
                     </a>
                     {% else %}
                     <a class="nav-item nav-link " href="{% url 'donations' %}" title="donate"><i
-                            class="fa fa-money fa-2x fa-fw" aria-hidden="true"></i>
+                            class="fa fa-thumbs-o-up fa-2x fa-fw" aria-hidden="true"></i>
                         <div class="d-inline d-none d-sm-block d-md-none"> Donations</div>
                     </a>
                     <a class="nav-item nav-link " href="{% url 'home' %}" title="Home"><i class="fa fa-home fa-2x fa-fw"
                             aria-hidden="true"></i>
-                        <div class="d-inline d-none d-sm-block d-md-none"> Home</div>
+                        <div class="d-inline d-none d-sm-block d-md-none"> Home Page</div>
                     </a>
                     <a class="nav-item nav-link " href="{% url 'about' %}" title="About"><i class="fa fa-info fa-2x fa-fw"
                             aria-hidden="true"></i>
-                        <div class="d-inline d-none d-sm-block d-md-none"> About</div><div class="d-inline d-none d-sm-block d-md-none"> About</div>
+                        <div class="d-inline d-none d-sm-block d-md-none"></div>
+                        <div class="d-inline d-none d-sm-block d-md-none"> About</div>
                     </a>
                     <a class="nav-item nav-link " href="{% url 'posts' %}" title="Community"><i
                             class="fa fa-comments-o fa-2x fa-fwsource" aria-hidden="true"></i>
@@ -130,6 +132,7 @@
             {% endfor %}
             {% endif %}
         </div>
+        
         <!-- main content block-->
         {% block content %}{% endblock %}
 
