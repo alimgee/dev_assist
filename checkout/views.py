@@ -71,7 +71,10 @@ def checkout(request):
         # loading payment forms
         payment_form = MakePaymentForm()
         order_form = OrderForm()
-
-    return render(request, "checkout/checkout.html",
+    
+    context={
+        'title':'Checkout'
+    }
+    return render(request, "checkout/checkout.html", context,
                   {'order_form': order_form, 'payment_form': payment_form,
                    'publishable': settings.STRIPE_PUBLISHABLE})
