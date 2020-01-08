@@ -19,4 +19,9 @@ def register(request):
     else:
         # if form is not submitted displaying the form
         form = UserRegisterForm()
-    return render(request, 'register.html', {'form': form})
+
+    context={
+        'title':'Register',
+        'form': form
+    }
+    return render(request, 'register.html', context)
