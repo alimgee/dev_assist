@@ -15,6 +15,21 @@ stripe.api_key = settings.STRIPE_SECRET
 # user must be logged in to see checkout
 @login_required
 def checkout(request):
+    '''
+    function to load items currently in the cart
+    and load the payment forms if there are donations
+    in the cart. Stripe will check payments and process
+    them accordingly
+    '''
+   
+    # checking if anything is in the cart
+    cartno = request.session.get('cart', {})
+    # if nothing is in the cart redirect to donation page
+    if not cartno:
+        messages.warning(request,
+                         f'Your Cart has no donations!! ')
+        return redirect(reverse('donations'))
+
     user = request.user
     # if user fills in forms on checkout
     if request.method == "POST":
@@ -72,9 +87,7 @@ def checkout(request):
         payment_form = MakePaymentForm()
         order_form = OrderForm()
     
-    context={
-        'title':'Checkout'
-    }
-    return render(request, "checkout/checkout.html", context,
+
+    return render(request, "checkout/checkout.html",
                   {'order_form': order_form, 'payment_form': payment_form,
                    'publishable': settings.STRIPE_PUBLISHABLE})
