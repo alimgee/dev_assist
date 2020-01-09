@@ -1,0 +1,210 @@
+body{
+    font-family: 'Ubuntu', sans-serif; 
+    color: #757575;
+}
+
+/*  nav */
+/* change the nav background color */
+.bg-light {
+    background-color: #a8a9ad!important;
+   
+}
+/* change text color */
+.navbar-light .navbar-brand  {
+    color: #fafafa;
+}
+
+.nav-item{
+    color: #fafafa!important;
+   
+
+}
+.nav-item:hover {
+    color: #757575!important;
+}
+.navbar-brand:hover{
+    color: #757575!important;
+}
+
+/* jumbotron */
+.jumbotron-fluid{
+    font-weight: bold; 
+    background-color: white;
+    text-align: center;
+}
+/* index page card */
+.card{
+    border: none;
+    text-align: center;
+    padding: 1.75rem;
+}
+.fa{
+    color: #a8a9ad;
+}
+.fa-2x{
+    color: #757575;
+}
+.fa-2x:hover{
+    color: #fafafa;
+}
+.fa-size{
+    font-size: 10rem;
+}
+
+/* homepage buttons */
+.btn-info{
+    font-size: .75rem;
+    background-color: #757575;
+    color: #fafafa;
+    border-color: #757575;
+}
+.btn-info:hover{
+    background-color: #fafafa;
+    color: #757575;
+    border-color: #757575;
+}
+
+/* community landing page */
+.query{
+    text-align: left;
+}
+.page-item.active .page-link{
+    background-color: #757575;
+    border-color: #757575;
+}
+.page-link{
+    color: #757575;
+}
+.article-title{
+    color: #757575;
+}
+.query-card{
+   border-style: solid; 
+   border-color: #a8a9ad;
+   border-radius: 1rem;
+   border-width: thin;
+}
+.comment{
+    text-align: left;
+}
+.comment-card{
+    border-style: dashed; 
+    border-color: #a8a9ad;
+    border-radius: 1rem;
+    border-width: thin;
+    width: 90%;
+    margin: auto;
+ }
+ .comment-link:hover{
+    color: #757575;
+ }
+.delete-post{
+    margin-right: 1rem;
+    display: inline-block;
+    color: red;
+}
+.comment-form{
+    border-style: solid; 
+    border-color: #a8a9ad;
+    border-radius: 1rem;
+    border-width: thin;
+    width: 90%;
+    margin: auto;
+}
+/* Donation page */
+.donate-description{
+    display: inline-block;
+    margin-right: 2rem;
+}
+.donate-price{
+    display: inline-block;
+    font-size: 1.5rem;
+}
+.doante-cart{
+    color: #757575;
+    display: inline-block;
+    font-size: 1.5rem;
+}
+.fa-cart-plus:hover{
+    color: #a8a9ad!important;
+}
+
+/* cart page */
+
+.badge{
+    height: 1.2rem;
+    width: 1.2rem;
+}
+.cart-description{
+    display: inline-block;
+    margin-right: 2rem;
+}
+.cart-price{
+    display: inline-block;
+    font-size: 1.5rem;
+    margin-right: 2rem;
+}
+/* forms */
+.form-group{
+    text-align: left;
+}
+
+/* error pages */
+.error-page-title{
+    font-size: 3rem;
+}
+
+.alert-success{
+    background-color: #fafafa!important;
+    border-color: #757575;
+}
+.alert-warning{
+    background-color: #fafafa!important;
+    border-color: #757575;
+}
+
+/* footer */
+.footer{
+    line-height: 1rem;
+    font-size: 1rem;
+    text-align: center;
+    background-color: #a8a9ad;
+    padding: 1rem;
+    color: #fafafa;
+
+}
+.footer-link{
+    text-decoration: none;
+    color: #fafafa;
+}
+.footer-link:hover{
+    color: #757575;
+    text-decoration: none;
+}
+.footer-item{
+    list-style-type:none;
+    text-indent: -2rem;
+    line-height: 1.5rem;
+}
+.text-dark{
+    color:#757575!important;
+    font-size: 1.25rem;
+}
+.text-light{
+    font-size: 1rem;
+}
+
+.searchbar{
+    background: transparent;
+    border-radius: .5rem;
+    color: #fafafa; 
+    
+}
+.searchbutton{   
+    border-radius: .5rem;
+    font-weight: bold;
+    background: transparent;      
+}
+.fa-search{
+    color: #757575;
+}
