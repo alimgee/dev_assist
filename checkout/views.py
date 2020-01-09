@@ -23,9 +23,9 @@ def checkout(request):
     '''
    
     # checking if anything is in the cart
-    cartno = request.session.get('cart', {})
+    cartcontent = request.session.get('cart', {})
     # if nothing is in the cart redirect to donation page
-    if not cartno:
+    if not cartcontent:
         messages.warning(request,
                          f'Your Cart has no donations!! ')
         return redirect(reverse('donations'))
