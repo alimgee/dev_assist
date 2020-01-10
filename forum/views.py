@@ -30,6 +30,11 @@ def community(request):
 
 
 def do_search(request):
+    '''
+    Function to allow a user to search the community
+    posts. Using the Q objects funtionality to search the 
+    title and content fields of posts
+    '''
     query = request.GET.get('q')
     posts = Post.objects.filter(Q(title__icontains=query) |
                                 Q(content__icontains=query))
@@ -105,7 +110,7 @@ def create_query(request):
             query = query_form.save(commit=False)
             query.author = user
             query.save()
-            messages.success(request, f'Thanks for submiting your ticket')
+            messages.success(request, f'Thanks for submiting your Post')
             return redirect('posts')
     else:
         # loading form for posts
@@ -121,13 +126,13 @@ def create_query(request):
 def edit_query(request, pk):
     '''
     Function to allow a user to edit their
-    own query
+    own post
     '''
     query = get_object_or_404(Post, pk=pk)
     logged_user = request.user.id
     author = query.author.id
     if logged_user is not author:
-        messages.warning(request, f'you do not own this post')
+        messages.warning(request, f'you do not own this Post')
         return redirect('posts')
 
     if request.method == "POST":
@@ -135,7 +140,7 @@ def edit_query(request, pk):
         if query_form.is_valid():
             query_form.save()
             messages.success(
-                request, f"You have successfully changed your query")
+                request, f"You have successfully changed your Post")
             return redirect(query_detail, query.pk)
     else:
         query_form = QueryForm(instance=query)
@@ -160,7 +165,7 @@ def delete_query(request, pk):
     # if current user is not the author of the post dont allow deletion
     if logged_user is not author:
         messages.warning(request,
-                         f'You are not the current owner of this query')
+                         f'You are not the current owner of this Post')
         return redirect('posts')
     # delete post and message user
     query.delete()
