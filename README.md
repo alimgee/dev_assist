@@ -108,7 +108,7 @@ The site uses bootstrap 4 to be fully responsive across multiple devices. It has
 
 ### Wireframes
 
-WIreFames were created using balsamiq tool with license key provided by the Code Institute. https://balsamiq.com/ and came be found in the  [/documentation ](/documentation) folder at  [/documentation/DevAssist_WireFrames.pdf](/documentation/DevAssist_WireFrames.pdf)  .  The wireframes were created at the very start of the project. Throughout development scope changed,  i adjusted the layouts as appropriate to the projects end goals, there were also new pages added to accommodate journeys not initially thought of that became needed as the project progressed.
+WIreFames were created using balsamiq tool with license key provided by the Code Institute. https://balsamiq.com/ and can be found in the  [/documentation ](/documentation) folder at  [/documentation/DevAssist_WireFrames.pdf](/documentation/DevAssist_WireFrames.pdf) .  The wireframes were created at the very start of the project on a notepad and later transferred. Throughout development there was a little scope change,  i adjusted the layouts as appropriate to the projects end goals, there were also new pages added to accommodate journeys not initially thought of that became needed as the project progressed.
 
   
 
@@ -116,18 +116,20 @@ WIreFames were created using balsamiq tool with license key provided by the Code
 
 ### Existing Features
 
-```diff
-- TODO
-1. Add features here.
-```
+1. User can register and log on to the site.
+2. User can view Posts
+3. Registered in users can add/ delete / edit  Posts
+4. Registered users can add comments on Posts
+5. Registered users can make donations to the site using a Stripe based payment system.
+
 
 ### Future Features to Implement
 
 Future versions of the project may have the following:
-```diff
-- TODO
-1. Add future features here.
-```
+
+1. Images and code blocks to be uploaded.
+2. WYSIWIG editors added to Posts.
+3. A possible dev team to assist paid users.
 
  
 
@@ -140,10 +142,9 @@ Future versions of the project may have the following:
 
 ### Database schema
 
-```diff
-- TODO
-1. Add schema here.
-```
+My schema was initially written down in a notebook and later built using the online tool dbdiagram.io. The schema is as follows:
+<a  href="/documentation/db_schema_DevAssist.png"  target="_blank"><img  src="/documentation/db_schema_DevAssist.png"  alt="DevAssist DBj Schema"/></a>
+
 
   
 
