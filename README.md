@@ -1,7 +1,7 @@
 
 <h1  align="center">
-<a  href="https://dev-assist.herokuapp.com/"  target="_blank"><img  src="/documentation/"  alt="DevAssist Desktop Screen"/></a>
-<a  href="https://dev-assist.herokuapp.com/"  target="_blank"><img  src="/documentation/"  alt="DevAssist Mobile Screen"/></a>
+<a  href="https://dev-assist.herokuapp.com/"  target="_blank"><img  src="/documentation/desktop.gif"  alt="DevAssist Desktop Screen"/></a>
+<a  href="https://dev-assist.herokuapp.com/"  target="_blank"><img  src="/documentation/mobile.gif"  alt="DevAssist Mobile Screen"/></a>
 </h1>
 <h2  align="center">
 DevAssist
@@ -47,60 +47,68 @@ This site is purely for educational purposes only and does not provide any servi
 
 ### Project Goals
 
-  ```diff
-- TODO
-1. Add goals here.
-```
+The aim of this project is to create a Full Stack web app to fully demonstrate the learnings throughout the course. A pass in this project is required to pass the course and obtain certification. The site will use Python and the Django Framework with a back-end db (PostgreSQL) for the back-end stack. Bootstrap 4 and HTML will be used on the front-end stack. <br>
+The site will mimic an open community support site for development type issues, with the community itself providing the support for other users on the site. Users will be be required to register on the site to add posts or comments. There will also be a donation functionality to demonstrate the use of eCommerce, in this case i will be using Stripe as a payment system. Registered Users will be able to donate small sums which will help keep the site maintained and also allow further future functionalities.
+<br>
 
 
 #### User goals
+
 User goals in brief are as follows:
 
-```diff
-- TODO
-1. Add storys here.
-```
+1. To allow users to register on the site.
+2. To allow users to Post a query or comment to the site when logged in.
+3. To allow users to edit or delete their Posts
+4. To  allow users to submit donations to the site management team to help assist with site maintenance and future additional functionalities
 
   
 
 #### User Stories
-```diff
-- TODO
-1. Add storys here.
-```
+1.  I want to see a brief  summary of the main site sections and  relevant links when i go to the landing page of the site.
+2. I want to be able to view my Posts on the site.
+3. I want to be able to view Posts by other users to the site.
+4.  I want Post per page to be limited to a small amount with the ability to view all reviews through pagination.
+5.  Summary of Posts on the community page should have button links to the full Post.
+6.  The full Post view should show the original user who created the Post.
+7.  The full Post view should show the date of the Post.
+8.  The full Post view should allow logged in users to edit or delete their own Posts.
+9.  The full Post view should allow any logged in user to add a comment.
+10.  The full Post view should show all comments associated with the Post.
+11.  There should be an option to register on the site.
+12. There should be an option to log onto the site.
+13. There should be an option to log out of the site when logged in
+14. I want to be able to send a donation to the site via a credit card payment option.
+15. I want there to be a cart functionality where i can see what i have added to the cart for the current logged in session.
+16. The cart will persist only during the logged in session.
+17. There should be a checkout option on the cart page which clicks through to the order form payment screen.
+18. The order form checkout page will sumarise the order and show the total payment.
+19. The user will be able to add the credit card details and submit the payment with a valid card number(for the purpose of this project this will only be the Stripe test card number).
+20. Successful payment will be messaged and the cart cleared on successful submit.
+21. I should be able to search through the community posts.
 
 
-
-  
 
 ### Design
 
   
 **Fonts**
 
-```diff
-- TODO
-font details here.
-```
+I decided to use the 'Ubuntu' font from google("[https://fonts.googleapis.com/css?family=Ubuntu](https://fonts.googleapis.com/css?family=Ubuntu)") as i felt that it was an 'easy on the eye' font and aided reading the Posts and comments.
 
 
 **Colours**
 
-![#747474](https://placehold.it/15/747474/000000?text=+) ***#747474***  
 
-
-```diff
-- TODO
-colour details here.
-```
+![#757575](https://placehold.it/15/757575/000000?text=+) ***#757575*** ![#a8a9ad](https://placehold.it/15/a8a9ad/000000?text=+) ***#a8a9ad***  ![#fafafa](https://placehold.it/15/fafafa/000000?text=+) ***#fafafa***  
+Initially i toyed with the idea of using a 70s style pallet as i found some of the colour schemes of this era interesting. However, once i started doing the project I began to think about using a monochrome style, trying to see if I can make a site looking interesting as possible with a bare minimum of colour.
 
 **Topography**
 
-The site uses bootstrap 4 to be fully responsive across multiple devices, also some media queries were used to change how the intro text appears across different devices to provide a smooth user experience.
+The site uses bootstrap 4 to be fully responsive across multiple devices. It has been checked on multiple devices using chrome dev tools and physically on Chrome and Firefox on Desktop and a Samsung Galxay S9.The top navigation floats to the right on desktop size windows and collapses down to a drop-down navigation on mobile devices
 
 ### Wireframes
 
-WIreFames were created using balsamiq tool with license key provided by the Code Institute. https://balsamiq.com/ and came be found in the  [/documentation ](/documentation) folder.  The wireframes were created at the very start of the project. Throughout development scope changed,  i adjusted the layouts as appropriate to the projects end goals, there were also new pages added to accommodate journeys not initially thought of that became needed as the project progressed.
+WIreFames were created using balsamiq tool with license key provided by the Code Institute. https://balsamiq.com/ and came be found in the  [/documentation ](/documentation) folder at  [/documentation/DevAssist_WireFrames.pdf](/documentation/DevAssist_WireFrames.pdf)  .  The wireframes were created at the very start of the project. Throughout development scope changed,  i adjusted the layouts as appropriate to the projects end goals, there were also new pages added to accommodate journeys not initially thought of that became needed as the project progressed.
 
   
 
