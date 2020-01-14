@@ -135,17 +135,22 @@ Future versions of the project may have the following:
 
 ## Database
 
-```diff
-- TODO
-1. Add DB detail here.
-```
+The project uses django so the development environment uses dbsqlite database, for production I am using a postgres database.
 
 ### Database schema
 
 My schema was initially written down in a notebook and later built using the online tool dbdiagram.io. The schema is as follows:
 <a  href="/documentation/db_schema_DevAssist.png"  target="_blank"><img  src="/documentation/db_schema_DevAssist.png"  alt="DevAssist DBj Schema"/></a>
 
+The **users** table stores the **username** and **email address** of the registered user, both of which are unique. The **user** table has the **username** as a foreign key in the **posts**, **orders**, and **comments** tables.
 
+The **posts** table has an **author** field which accepts the **username** from the **user** table, so each post has an unique user, It also has its **title** field as a foreign key in the **comments** table, link the post title and comment title together.
+
+The **comments** table is linked to the **posts** and **users** table via the **username** as a foreign key, it is also link to the **posts** table via the **title** and **query** field, fully linking all comments to a specific logged in user.
+
+The **donations** table stores the **name** and **description** of the 3 donations types currently available. It  has each donation name as a foreign key in the **order_line_items** table set as a foreign key thus linking the donation type to the order system at payment.
+
+The **orders** table has the **order_line_item** as an inline table linked by their shared id. The orders table contains the details of the payment for each donation made and includes the **user** field as a foreign key from the **user** table containing the username. 
   
 
 ## Technologies Used
@@ -157,7 +162,7 @@ This project utilizes Python, Django, Postgres, SQLite, HTML, CSS and JavaScript
   
 
 -  [Python](https://www.python.org/)
-The project uses **Python 3** to create the app, create the routes, create the functions within those routes and handles all back end interactions.
+The project uses **Python 3** to develop the app, as part of the Django framework.
 
 - [JQuery](https://jquery.com)
  The project uses **JQuery** as part of bootstrap 4 and to create a character counter on the text area fields.
@@ -169,14 +174,17 @@ The project uses **Bootstrap** to simplify the structure of the website and make
 The project uses **HTML5 and CSS3** for website structure and design.
 
 -  [Google Fonts](https://fonts.google.com/)
-```diff
-- TODO
-Add font detail here.
-```
-```diff
-- TODO
-Add Django and postgress details here.
-```
+I used the Ubuntu font from google as i thought in most suited for reading the post as its easy and clear on the eye. https://fonts.google.com/specimen/Ubuntu
+
+-  [Django](https://www.djangoproject.com/)
+The project uses the  **Django** framework to built the site. Django is a powerful high level web framework
+
+-  [SQLite](https://www.sqlite.org)
+The project uses **SQLite** relational database as its development level mysql database to store product, post and user information, it comes as part of the Django framework.
+
+-  [Postgres](https://www.postgresql.org/)
+The project uses **Postgres** relational database as its production level mysql database to store product, post and user information.
+
 -  [GitHub](https://github.com/)
 This project uses **GitHub** to remotely store the source code in a repository. The project can be cloned or downloaded from here. See [Deployment](#deployment) section
 
@@ -227,22 +235,26 @@ I personally used vscode on my local machine to develop the site using Python 3.
 
 1. To download or clone the site to your local machine you will need to go to my [repo](https://github.com/alimgee/book-review-milestone-project3) see steps in https://help.github.com/en/articles/cloning-a-repository .
 2.  Before you download or clone the site you will need to ensure you have [Python 3.7](https://www.python.org/downloads/) installed. 
-3. Once you have Python installed, created a virtual environment as appropriate to you chosen IDE and os.
-```diff
-- TODO
-Additonal steps to deploy here.
-```
+3. Once you have Python installed, create a virtual environment as appropriate to you chosen IDE and os.
+4. Install all requirements via the requirements.txt file using the *****pip _install_ -r _requirements_.txt***** command once you have activated your virtual environment.
+5. Use the command ***python manage,py runserver*** to get the project running on your localhost.
+6. You will need to change the email settings in **settings.py** to get the project  to send password reset emails via your own email services.
+
 
 ### Acknowledgements
 
-<strong>Code Institute</strong> tutors for their assistance in getting me this far in the course.
+This is the last project  in the Fullstack Frameworks Dev course and so brings an end to the beginning of my dream of becoming a developer, I am so proud to have got this far and completed the course and look forward to where my learnings now bring me. 
 
-All the folk in the <strong>Code Institute Slack </strong> for their invaluable input to their fellow members development. I also learned a lot for this project from the [Corey Schaffer](https://www.youtube.com/channel/UCCezIgC97PvUuR4_gbFUs5g) series of you tube videos on python and Django.
+Special thanks to the below:
 
-```diff
-- TODO
-more detail here
-```
+**Code Institute** tutors for their assistance in getting me this far in the course.
+
+**Code Institute** course material and learnings which were relied on for this development
+
+All the folk in the <strong>Code Institute Slack </strong> for their invaluable input to their fellow members development, in particular **JoWings** who spent a hour of her time on a sunday afternoon trying to help me with a travis issue with my foreign keys. I also learned a lot for this project from the [Corey Schaffer](https://www.youtube.com/channel/UCCezIgC97PvUuR4_gbFUs5g) series of you tube videos on python and Django.
+
+Also to various Stackoverflow articles for the pointers that often set me in the right direction to resolving issues. with my code
+
 
 
 #### Disclaimer
