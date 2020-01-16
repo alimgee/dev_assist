@@ -201,24 +201,89 @@ This project uses **StackEdit** to build the markdown for this readme file
 
 I worked in sprints so every task was manually tested thoroughly via flash() messages or expected behaviors. I used my own kanban board with a small whiteboard and Post Its to track tasks. After each task completion, I would fully test it before moving on to the next task.
 
-```diff
-- TODO
-further test details on unittesting here
-```
+I also used the built in unit testing functionality of Django framework, these tests will only run on the development built in DB SQLite. They are run in the local environment via the ***python manage.py test*** command. All tests can be found in the **tests.py** file of the relevant app. It was my first time using unittesing so i covered all the main tests however there were some testing that i relied on the manual testing process.
 
-  
+The unit test summary is as follows:
 
-When the project was fully completed i went through the below testing scenarios to further test the project.
+| App| Tests Details| file location| 
+| :------------- |:-------------| :-------------| 
+| Account | testing load of login, register and logout pages | account/tests.py|
+| Account | testing load of login, register and logout templates |  account/tests.py|
+| Account | testing successful user login | account/tests.py|
+| Account | testing successful submit of Register form | account/tests.py|
+| Cart | testing redirect of url /cart/ to login when user not logged in| cart/tests.py|
+| Cart | testing load of cart view page when user is logged in| cart/tests.py|
+| Cart | testing load of cart view templates when user is logged in| cart/tests.py|
+| Checkout | testing redirect of url /checkout/ to login when user not logged in| checkout/tests.py|
+| Checkout | testing load of checkout view page when user is logged in| checkout/tests.py|
+| Checkout | testing load of checkout view templates when user is logged in| checkout/tests.py|
+| Donation| testing load of donation page /donate/| donation/tests.py|
+| Donation| testing load of donation page template| donation/tests.py|
+| Forum| testing load of forum landing page /community/ | forum/tests.py|
+| Forum| testing load of forum landing page templates | forum/tests.py|
+| Forum| testing redirect of forum add new post page (/community/query/new/)  when not logged in | forum/tests.py|
+| Forum| testing load of forum add new post page (/community/query/new/)  when logged in | forum/tests.py|
+| Forum| testing loading of the post detail page (/community/query/1/)   | forum/tests.py|
+| Forum| testing loading of all the post detail page templates  | forum/tests.py|
+| Forum| testing add post page (/community/query/new/) form accepts valid data and submits correctly   | forum/tests.py|
+| Forum| testing add post page (/community/query/new/) form shows correct error message if required fields are filled in   | forum/tests.py|
+| Forum| testing add comment form on post detail page accepts valid data and submits correctly   | forum/tests.py|
+| Forum| testing edit post page (/community/query/1/edit) form loads all templates correctly  | forum/tests.py|
+| Forum| testing edit post page form (/community/query/1/edit) submits correctly  | forum/tests.py|
+| Main| testing load of the homepage /  | main/tests.py|
+| Main| testing load of the about page /about  | main/tests.py|
+
+
+
+  ###Manual testing###
+
+When the project was fully completed i went through the below manual testing scenarios to further test the project.
 
   
 
 | Test | Expected |Passed |
 | :------------- |:-------------| :-----:|
-| User loads the landing page of site | Page displays without error and reviews can be viewed | &#9745; |
-```diff
-- TODO
-Add testcases.
-```
+| User loads the landing page of site | Page displays without error when logged in or out, all page content is displayed correctly and navigation menu is functioning responsively | &#9745; |
+| User loads the landing page of site whilst logged in | User only see links relevant to their logged in state and all links work as expected | &#9745; |
+| User loads the about (/about/) page of site | Page displays without error when logged in or out | &#9745; |
+| User loads the donations page of site | Page displays without error when logged in or out, all page content (3 donation products) is displayed correctly and navigation menu is functioning responsively | &#9745; |
+| User clicks on add donation on donations page (/donate) when not logged in| User is redirected to log in before donation can be added to cart | &#9745; |
+| User clicks on add donation on donations page (/donate) when logged in| Donation item is correctly added to users cart when cart is viewed (and is indicated on the top nav)| &#9745; |
+| User loads community page (/community/) | Page displays without error when logged in or out, all page content is displayed correctly including any posts currently in the db and pagination links showing if necessary, navigation menu is functioning responsively| &#9745; |
+| User clicks on Post title on the community page to load post details (/community/query/1) | Post Page displays without error when logged in or out, all page content is displayed correctly including any comments associated with the post currently in the db, navigation menu is functioning responsively| &#9745; |
+| User clicks on Community help button on the community page to load the add post form (/community/query/new) when logged in | Add Post Page displays without error when logged in all page content and form is displayed correctly, navigation menu is functioning responsively| &#9745; |
+| User clicks on Community help button on the community page to load the add post form (/community/query/new) when not logged in | User is redirected to login page | &#9745; |
+| User clicks on Post title on the community page to load post details (/community/query/1) when logged in | Post detail Page displays without error as per normal and the option to edit/ delete post and add a comment appear| &#9745; |
+| User clicks on delete or edit button on a Post that is not theirs | User is messaged that they do not own the post and the edit or delete action does not take place| &#9745; |
+| User clicks on delete button on a Post that they own | Modal is loading warning user they are about to delete a post with the option to cancel or go ahead with the deletion| &#9745; |
+| User  selects delete Post option on deletion modal | Post is deleted from db| &#9745; |
+| User clicks on edit button on a Post that they own | Form is loaded with the details of the Post that are editable| &#9745; |
+| User updates edit form with valid data | Form is submitted and new changes to the Post are display when the relevant Post detail page is loaded| &#9745; |
+| Logged in user clicks on add comment option in Post detail page| Add comment form loads| &#9745; |
+| User adds valid data to the add comment form | Add comment form submits and comment displays on the post detail page| &#9745; |
+| User selects login option | Log in Page displays without error , all page content and form is displayed correctly and navigation menu is functioning responsively| &#9745; |
+| User enters invalid data in login form  | User is messaged and not logged in| &#9745; |
+| User enters valid data in login form  | User is messaged and logged in successfully| &#9745; |
+| User selects Register option | Register Page displays without error , all page content and form is displayed correctly and navigation menu is functioning responsively| &#9745; |
+| User enters invalid data in Register form  | User is messaged and registration not submitted| &#9745; |
+| User enters an existing username or email address in Register form  | User is messaged and registration not submitted| &#9745; |
+| User enters valid data in Registration form  | User is messaged and log in page loads| &#9745; |
+| User loads cart page with items in cart and selects the checkout option  | Checkout Page displays without error, all page content, items to be ordered, total cost and payment form are displayed correctly and navigation menu is functioning responsively| &#9745; |
+| User enters invalid data in Payment form  | User is messaged as appropriate to incorrect data or card detail and payment does not go through| &#9745; |
+| User enters valid data in Payment form  and uses the test Stripe credit card details | User is messaged and payment goes through successfully and appears in the Stripe test dashboard| &#9745; |
+| User selects the logout option  | user is successfully logged out and messaged| &#9745; |
+| User selects password reset option from login form page  | Reset password Page displays without error , all page content and form is displayed correctly and navigation menu is functioning responsively| &#9745; |
+| User enters  and existing registered email address in password reset form  | Reset email is to email address entered by the user| &#9745; |
+| User enters email address not in already registered  | Reset email is not sent| &#9745; |
+| User clicks through on password reset email link | Password reset page loads with the relevant form to enter new password details | &#9745; |
+| User enters valid date on password reset form| Password is reset and user can now log in with new password details | &#9745; 
+| User loads the about (/about) page of site | About page displays without error when logged in or out, all page content is displayed correctly and navigation menu is functioning responsively | &#9745; |
+| User is currently logged in | User will see different top and bottom navigation items relevant to their current logged in state | &#9745; |
+| User is currently not logged in | User will see different top and bottom navigation items relevant to their current logged  out state | &#9745; |
+| User enters a page url that does not exist on the site| 404 page displays without error when logged in or out, all page content is displayed correctly and navigation menu is functioning responsively | &#9745; |
+
+
+
 
 ## Coding Notes
 Some of the features of the code are as follows:
@@ -251,9 +316,10 @@ Special thanks to the below:
 
 **Code Institute** course material and learnings which were relied on for this development
 
-All the folk in the <strong>Code Institute Slack </strong> for their invaluable input to their fellow members development, in particular **JoWings** who spent a hour of her time on a sunday afternoon trying to help me with a travis issue with my foreign keys. I also learned a lot for this project from the [Corey Schaffer](https://www.youtube.com/channel/UCCezIgC97PvUuR4_gbFUs5g) series of you tube videos on python and Django.
+All the folk in the <strong>Code Institute Slack </strong> for their invaluable input to their fellow members development, in particular **JoWings** who spent a hour of her time on a sunday afternoon trying to help me with an issue with my foreign keys. I also learned a lot for this project from the [Corey Schaffer](https://www.youtube.com/channel/UCCezIgC97PvUuR4_gbFUs5g) series of you tube videos on python and Django.
 
-Also to various Stackoverflow articles for the pointers that often set me in the right direction to resolving issues. with my code
+Also to various Stackoverflow articles for the pointers that often set me in the right direction to resolving issues. with my code.
+
 
 
 
