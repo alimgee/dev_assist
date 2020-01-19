@@ -31,7 +31,7 @@ This site is purely for educational purposes only and does not provide any servi
   
 2.  [**Features**](#features)
 -  [**Existing Features**](#existing-features)
--  [**Features Left to Implement**](#features-left-to-implement)
+-  [**Future Features**](#future-features)
 3.  [**Database**](#database)
 4.  [**Technologies used**](#technologies-used)
 5.  [**Testing**](#testing)
@@ -41,18 +41,18 @@ This site is purely for educational purposes only and does not provide any servi
 9.  [**Disclaimer**](#disclaimer)
 
   
-## UX
+# UX
 
   
 
-### Project Goals
+## Project Goals
 
 The aim of this project is to create a Full Stack web app to fully demonstrate the learnings throughout the course. A pass in this project is required to pass the course and obtain certification. The site will use Python and the Django Framework with a back-end db (PostgreSQL) for the back-end stack. Bootstrap 4 and HTML will be used on the front-end stack. <br>
 The site will mimic an open community support site for development type issues, with the community itself providing the support for other users on the site. Users will be be required to register on the site to add posts or comments. There will also be a donation functionality to demonstrate the use of eCommerce, in this case i will be using Stripe as a payment system. Registered Users will be able to donate small sums which will help keep the site maintained and also allow further future functionalities.
 <br>
 
 
-#### User goals
+### User goals
 
 User goals in brief are as follows:
 
@@ -63,7 +63,7 @@ User goals in brief are as follows:
 
   
 
-#### User Stories
+### User Stories
 1.  I want to see a brief  summary of the main site sections and  relevant links when i go to the landing page of the site.
 2. I want to be able to view my Posts on the site.
 3. I want to be able to view Posts by other users to the site.
@@ -88,7 +88,7 @@ User goals in brief are as follows:
 
 
 
-### Design
+## Design
 
   
 **Fonts**
@@ -106,7 +106,7 @@ Initially i toyed with the idea of using a 70s style pallet as i found some of t
 
 The site uses bootstrap 4 to be fully responsive across multiple devices. It has been checked on multiple devices using chrome dev tools and physically on Chrome and Firefox on Desktop and a Samsung Galxay S9.The top navigation floats to the right on desktop size windows and collapses down to a drop-down navigation on mobile devices
 
-### Wireframes
+## Wireframes
 
 WIreFames were created using balsamiq tool with license key provided by the Code Institute. https://balsamiq.com/ and can be found in the  [/documentation ](/documentation) folder at  [/documentation/DevAssist_WireFrames.pdf](/documentation/DevAssist_WireFrames.pdf) .  The wireframes were created at the very start of the project on a notepad and later transferred. Throughout development there was a little scope change,  i adjusted the layouts as appropriate to the projects end goals, there were also new pages added to accommodate journeys not initially thought of that became needed as the project progressed.
 
@@ -123,7 +123,7 @@ WIreFames were created using balsamiq tool with license key provided by the Code
 5. Registered users can make donations to the site using a Stripe based payment system.
 
 
-### Future Features to Implement
+### Future Features
 
 Future versions of the project may have the following:
 
@@ -133,7 +133,7 @@ Future versions of the project may have the following:
 
  
 
-## Database
+# Database
 
 The project uses django so the development environment uses dbsqlite database, for production I am using a postgres database.
 
@@ -153,7 +153,7 @@ The **donations** table stores the **name** and **description** of the 3 donatio
 The **orders** table has the **order_line_item** as an inline table linked by their shared id. The orders table contains the details of the payment for each donation made and includes the **user** field as a foreign key from the **user** table containing the username. 
   
 
-## Technologies Used
+# Technologies Used
 
   
 
@@ -195,7 +195,7 @@ This project uses **StackEdit** to build the markdown for this readme file
   
   
 
-## Testing
+# Testing
 
   
 
@@ -235,7 +235,7 @@ The unit test summary is as follows:
 
 
 
-  ###Manual testing###
+## Manual testing
 
 When the project was fully completed i went through the below manual testing scenarios to further test the project.
 
@@ -285,15 +285,108 @@ When the project was fully completed i went through the below manual testing sce
 
 
 
-## Coding Notes
+# Coding Notes
+
+The site uses python 3,7 and the Django 2.2 framework.
+
 Some of the features of the code are as follows:
-```diff
-- TODO
-1. Add code explanations here.
-```
+
+The main and about pages load via the ***dev_assist/main/urls.py/***  file redirected from the ***dev_assist/dev_assist/urls.py/*** file:
 ~~~
-im a code block
+dev_assist/dev_assist/urls.py/:
+
+path('', include('main.urls')),
+
+..................
+
+dev_assist/main/urls.py/:
+
+path('', views.home, name='home'),
+path('about/', views.about, name='about'),
 ~~~
+This method of setting the urls is also used in the cart, checkout and forum apps:
+~~~
+dev_assist/dev_assist/urls.py/:
+
+path('community/', include('forum.urls')),
+path('cart/', include('cart.urls')),
+path('donate/', donation_view.donations, name='donations'),
+path('checkout/', include('checkout.urls')),
+~~~
+
+### User authentication feature
+
+I use the built in django auth methods to create new users and log them in or out. The urls for these are also set in the dev_assist app in urls.py
+
+~~~
+dev_assist/dev_assist/urls.py/:
+
+from account import views as user_views
+
+path('register/', user_views.register, name='register'),
+# using the built in log in view to allow log user in
+path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
+# using the built in log out functionality
+path('logout/', auth_views.LogoutView.as_view(template_name='logout.html'), name='logout'),
+~~~
+the import statement pulls in the ***account/views.py*** file which then tells django which function in the account/views.py file to look at eg ***path('register/', user_views.register, name='register')*** is telling django to look at the function called register in the ***account/views.py*** file for further processing of the **/register** url, the name value is used to define the url when linking to the page eg. ***href="{% url 'register' %}"***.
+The register form is located in the ***account/forms.py*** file which defines the that Im using the built in User model and the built in  ***UserCreationForm***.
+~~~
+from django.contrib.auth.models import User # built in
+from django.contrib.auth.forms import UserCreationForm # from built in django
+~~~
+The ***UserRegistrationForm*** function creates the form with the built in ***User*** model and defines which fields to use in the form
+~~~
+class UserRegisterForm(UserCreationForm):
+	email = forms.EmailField() # creating email field
+	class Meta: # additional metadata for form
+	model = User # using built in User model
+	fields = ['username', 'email', 'password1', 'password2'] 
+~~~
+The ***clean_email*** function checks to db to ensure the the email address entered on the register form is unique. This was adapted from a stackoverflow article.
+
+The ***register*** function in the ***account/views.py*** checks if the form has been submitted and then validates the data only adding the user to the db if it passes all validation checks.
+~~~
+def register(request):
+	if request.method == 'POST':
+		form = UserRegisterForm(request.POST)
+		if form.is_valid():
+			form.save()
+			username = form.cleaned_data.get('username')
+			messages.success(request,f'Account created! You can now log in')
+			return redirect('login')
+
+	form = UserRegisterForm()
+	context={
+	'title':'Register',
+	'form': form
+	}
+	return render(request, 'register.html', context)
+~~~
+In the ***settings.py*** file the django app is informed where to redirect to once there is a successful submit.
+~~~
+LOGIN_URL = 'login'
+~~~
+
+The remaining 2 paths for login and logout are using the built in django views  to process and will look to the relevant template name defined to  load in the html etc for that page.
+~~~
+path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login')
+~~~
+
+### Navigation text display for mobile
+
+I felt that given the amount of items in the top nav that it looked a little cluttered with the names of the link alongside the nav icons so I set the nav link names to only show on smaller devices thus giving a cleaner look on the top nav for larger devices.
+~~~
+<a class="nav-item nav-link " href="{% url 'donations' %}" title="donate">
+<i class="fa fa-thumbs-o-up fa-2x fa-fw" aria-hidden="true"></i>
+<!-- only showing nav names on mobiles and tabs, hiding for larger devices for better viewing-->
+<div class="d-inline d-none d-sm-block d-lg-none"> Donations</div></a>
+~~~
+
+### Cart and Checkout
+
+### Forum
+
 ## Deployment
 
 I personally used vscode on my local machine to develop the site using Python 3.7.3  and deployed to Heroku via Github.
