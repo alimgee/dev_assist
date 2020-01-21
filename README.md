@@ -191,6 +191,9 @@ This project uses **GitHub** to remotely store the source code in a repository. 
 -  [StackEdit](https://stackedit.io)
 This project uses **StackEdit** to build the markdown for this readme file
 
+-  [Stripe](https://www.stripe.com)
+This project uses **Stripe** to process credit card payments for user donations.
+
  
   
   
@@ -641,6 +644,7 @@ I personally used vscode on my local machine to develop the site using Python 3.
 4. Install all requirements via the requirements.txt file using the *****pip _install_ -r _requirements_.txt***** command once you have activated your virtual environment.
 5. Use the command ***python manage,py runserver*** to get the project running on your localhost.
 6. You will need to change the email settings in **settings.py** to get the project  to send password reset emails via your own email services.
+7. I used Heroku to host the public version of my app. I used a postgres add on for my db on the Heroku app and set all secret environmental values in the config vars in the settings of the heroku app. I linked the Heroku app to the github repo via the deployment section of the Heroku app and done a manual deploy from there. I used gunicorn to run the app in heroku and whitenoise to manage the static files. A procfile is also needed by heroku with the line ***web: gunicorn dev_assist.wsgi:application*** to let heroku know how to run the web app. Heroku also requires the **requirement.txt** file to inform it of any relative dependencies for the app.
 
 
 ### Acknowledgements
