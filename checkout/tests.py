@@ -3,8 +3,8 @@ from django.contrib.auth.models import User
 from account.forms import UserRegisterForm
 
 
-class CartTestsLoggedOut(TestCase):
-    def test_cart_page_load(self):
+class CheckoutTestsLoggedOut(TestCase):
+    def test_checkout_page_load(self):
         '''
         function to check that users cannot load
         checkout page if not logged in
@@ -14,7 +14,7 @@ class CartTestsLoggedOut(TestCase):
         self.assertEqual(response.status_code, 302)
 
 
-class CartTestsLoggedIn(TestCase):
+class CheckoutTestsLoggedIn(TestCase):
     # setting up logged in user
     def setUp(self):
         '''
@@ -33,7 +33,7 @@ class CartTestsLoggedIn(TestCase):
         self.assertEqual(response.status_code, 200)
 
     # testing checkout templates load as expected
-    def test_cart_page_templates_load(self):
+    def test_checkout_page_templates_load(self):
         response = self.client.get('/checkout/')
         self.assertTemplateUsed(response, "checkout/checkout.html")
         self.assertTemplateUsed(response, "base.html")
