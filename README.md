@@ -384,9 +384,253 @@ I felt that given the amount of items in the top nav that it looked a little clu
 ~~~
 
 ### Cart and Checkout
+The cart is accessible from all pages once logged in. This is done using a function set in the **cart/contexts.py** file. The cart will have items added from the the donations page /donate/ and on the cart view page items can be removed, the check button is also displayed to progress the order from the cart to the checkout.
+The app knows to use the contexts file as its set in the project **settings.py** file:
+~~~
+'context_processors': [
+	'cart.contexts.cart_contents', # this is the context.py file in the cart app, This makes it available on every page
+],
+~~~
+**contexts.py** file:
+~~~
+from django.shortcuts import get_object_or_404
+from donation.models import Donation
 
+def cart_contents(request):
+	cart = request.session.get('cart', {})
+	cart_items = []
+	total = 0
+	donation_count = 0
+~~~
+the above sets the cart to its 'empty' state. Then below, the cart (stored in the session) is looped through and displayed.
+~~~
+	for id, quantity in cart.items():
+	donation = get_object_or_404(Donation, pk=id)
+	total += quantity * donation.price
+	donation_count += quantity
+	cart_items.append({'id': id, 'quantity': quantity, 'donation': donation})
+	return {'cart_items': cart_items, 'total': total, 'donation_count': donation_count}
+~~~
+Both the checkout and the cart functionalities are mostly based on what we learned for the course lessons. The checkout uses Stripe to verify the user card details. And saves the users order (donation)  to the db if payment is successful. The javascript for the Stripe functionality is as from course and is stored in static/js/stripe.js. I am using version 2 of stripe, the below snippet is called in the checkouts template (**/checkout/templates/checkout/checkout.html**) and is standard use.
+~~~
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<script type="text/javascript">
+//<![CDATA[
+Stripe.publishableKey = '{{ publishable }}';
+//]]>
+</script>
+<script type="text/javascript" src="{% static 'js/stripe.js' %}"></script>
+~~~
+The order form (**/checkout/forms.py**) uses the model as set in (**/checkout/models.py**). Each donation item is also set as an inline item in the orders model class so that when an order is submitted so too is the donation items purchased and these are saved to the relevant db.
+~~~
+class Order(models.Model):
+	full_name = models.CharField(max_length=50, blank=False)
+	phone_number = models.CharField(max_length=20, blank=False)
+	user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
+	date = models.DateField()
+~~~
+~~~
+class OrderLineItem(models.Model):
+	order = models.ForeignKey(Order, null=False, on_delete=models.CASCADE)
+	donation = models.ForeignKey(Donation, null=False, on_delete=models.CASCADE )
+	quantity = models.IntegerField(blank=False)
+~~~
+Both the payment and order forms are called and displayed in the **checkout/templates/checkout/checkout.html** template. The payment form is required by Stripe.
+
+~~~
+class MakePaymentForm(forms.Form):
+MONTH_CHOICES = [(i, i) for i in range(1, 12)]
+YEAR_CHOICES = [(i, i) for i in range(2019, 2036)]
+credit_card_number = forms.CharField(label='Credit card number', required=False)
+cvv = forms.CharField(label='Security code (CVV)', required=False)
+expiry_month = forms.ChoiceField(label='Expiry Month', choices=MONTH_CHOICES, required=False)
+expiry_year = forms.ChoiceField(label='Expiry Year', choices=YEAR_CHOICES, required=False)
+stripe_id = forms.CharField(widget=forms.HiddenInput)
+
+class OrderForm(forms.ModelForm):
+class Meta:
+model = Order
+fields = (
+'full_name', 'phone_number'
+)
+~~~
+The checkout function in the **checkout/views.py** file then processes the actions on the page:
+
+Secret stripe key is set at the top of the file
+~~~
+stripe.api_key = settings.STRIPE_SECRET
+~~~
+login decorator is used to check if the user is logged in before displaying checkou
+~~~
+# user must be logged in to see checkout
+@login_required
+def checkout(request):
+~~~
+Checking cart contents and if nothing is in cart the user is sent to the donations page
+~~~
+cartcontent = request.session.get('cart', {})
+if not cartcontent:
+	messages.warning(request,f'Your Cart has no donations!! ')
+	return redirect(reverse('donations'))
+~~~
+if the forms are submit the are checked and if valid the form details are saved, cart is looped through and order is successful order is save to db
+~~~
+user = request.user
+if request.method == "POST":
+	order_form = OrderForm(request.POST)
+	payment_form = MakePaymentForm(request.POST)
+	if order_form.is_valid() and payment_form.is_valid():
+	order = order_form.save(commit=False)
+	order.date = timezone.now()
+	order.user = user
+	order.save()
+
+~~~
+~~~
+for id, quantity in cart.items():
+donation = get_object_or_404(Donation, pk=id)
+total += quantity * donation.price
+# adding order to db
+order_line_item = OrderLineItem(
+order=order,
+donation=donation,
+quantity=quantity)
+order_line_item.save()
+~~~
+Stripe is queried and relevant messages are returned to the user, payment is processed if valid card (Stripe test card details) is entered.
+~~~
+try:
+# processing stripe payment
+customer = stripe.Charge.create(
+amount=int(total * 100),
+currency="EUR",
+description=request.user.email,
+card=payment_form.cleaned_data['stripe_id'],)
+~~~
+display card errors
+~~~
+# display card errors if any
+except stripe.error.CardError:
+messages.error(request, "Your card was declined!")
+~~~
+Process successful order and message user, clear cart and load donations page
+~~~
+# if payment is successful empty cart content and inform user
+if customer.paid:
+messages.success(request, f'You have successfully paid')
+request.session['cart'] = {}
+return redirect(reverse('donations'))
+~~~
+message any other errors
+~~~
+else:
+messages.error(request, "Unable to take payment")
+else:
+print(payment_form.errors)
+messages.error(request,"We were unable to take a payment with that card!")
+
+~~~
+The below will load page forms on page load
+~~~
+else:
+
+# loading payment forms
+payment_form = MakePaymentForm()
+order_form = OrderForm()
+eturn render(request, "checkout/checkout.html",
+{'order_form': order_form, 'payment_form': payment_form,'publishable': settings.STRIPE_PUBLISHABLE})
+~~~
 ### Forum
+The forum landing page (/community) checks for posts in the db and uses the built in django pagination to display the posts
+~~~
+from django.core.paginator import Paginator
+~~~
+~~~
+def community(request):
+	querys = Post.objects.all()
+~~~
+All available posts, the posts are then paginated to show 3 posts per page, with the default page number set to 1. The current page is passed to the template and loaded
+~~~
+	page = request.GET.get('page', 1)
+	paginator = Paginator(querys, 3)
+	post_pag = paginator.get_page(page)
+	context = {
+	"posts": post_pag
+	}
+	return render(request,"forum/forum_list.html", context)
 
+~~~
+The next and previous buttons for the pagination exist in the template
+**forum/templates/forum/forum_list.html:**
+~~~
+{% if posts.has_other_pages %}
+<ul class="pagination">
+~~~
+checking to see if there are posts previous to the current displayed ones and if so showing the previous links to the previous page(s)
+~~~
+{% if posts.has_previous %}
+<li class="page-item"><a class="page-link" href="?page={{ posts.previous_page_number }}">&laquo;</a></li>
+{% else %}
+~~~
+if there are no previous posts the previous link is hidden
+~~~
+<li class="disabled page-item"><span class="page-link">&laquo;</span></li>
+{% endif %}
+~~~
+looping through posts for the current page and displaying
+~~~
+{% for i in posts.paginator.page_range %}
+<!-- showing current active page -->
+{% if posts.number == i %}
+<li class="active page-item"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
+{% else %}
+<li><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+{% endif %}
+{% endfor %}
+~~~
+if there are more pages show the next link or hide it if there are no more pages
+~~~
+{% if posts.has_next %}
+<li class="page-item"><a class="page-link" href="?page={{ posts.next_page_number }}">&raquo;</a></li>
+{% else %}
+<!-- disable next link if there are no more pages-->
+<li class="disabled page-item"><span class="page-link">&raquo;</span></li>
+~~~
+The add post form at **forum/forms.py** is used to add a post to the db and is based on the model at **forum/models.py**  The model has a 'title' , 'author', 'content' and 'date_posted' field set in the order of date posted. The form, once valid, is posted to the db upon successful submit. The user needs to be logged in to add a post. This is done in the 'create_query' function and uses the login required decorator
+
+**forum/views.py:**
+~~~
+from django.contrib.auth.decorators import login_required
+~~~
+~~~
+@login_required
+def create_query(request):
+~~~
+The edit_query function also uses the same form and model to edit an existing post. 
+
+The post detail page shows all detail of the post and will also show edit and delete post  and add comment options if the user is logged in. The add comment form is also found in the same file as the add post and works in a similar manner.
+
+### forum search
+The search function also lives in the forum app in **views.py**.  The search will search the content and title fields of all Posts in the db. To allow multiple field searches i used the Q functionality in django:
+~~~
+from django.db.models import Q # for multiple searchs
+~~~
+the values passed from the search form on the top navigation are passed to the 'query' variable.
+~~~
+def do_search(request):
+	query = request.GET.get('q')
+~~~
+I then use the Q functionality to check the relevant db table fields for the query entered by the user. If there are no posts with the user query the user is messaged. Any posts the qualify the query search are then returned to the template and displayed.
+~~~
+	posts = Post.objects.filter(Q(title__icontains=query) | Q(content__icontains=query))
+	if not posts:
+		messages.warning(request,
+		f'Your serach for "{query} " returned no results')
+	context = {
+	"posts": posts
+	}
+	return render(request, "forum/forum_list.html", context)
+~~~
 ## Deployment
 
 I personally used vscode on my local machine to develop the site using Python 3.7.3  and deployed to Heroku via Github.
