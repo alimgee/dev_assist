@@ -20,6 +20,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
+if os.path.exists('env.py'):
+    import env
+
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
@@ -29,7 +32,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 
 
 
-ALLOWED_HOSTS = ['localhost', 'dev-assist.herokuapp.com']
+ALLOWED_HOSTS = ['localhost', 'dev-assist.herokuapp.com', 'dev-assist.onrender.com']
 
 # Add Render.com URL to allowed hosts
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
